@@ -10,6 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Playfair+Display:wght@500;600;700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="js/supabase.js" defer></script>
     <script src="js/app.js" defer></script>
   </head>
   <body>
@@ -28,6 +30,14 @@
           <a href="#contact">Contact</a>
           <a class="button button-small" href="#stays">Explore stays <span aria-hidden="true">↗</span></a>
         </nav>
+        <div class="auth-nav" aria-label="Account">
+          <button class="button button-small button-outline" id="auth-open" type="button" aria-haspopup="dialog" aria-controls="auth-dialog">Log in / Sign up</button>
+          <div class="auth-account" id="auth-account" hidden>
+            <span class="auth-email" id="auth-email"></span>
+            <button class="button button-small button-outline" id="auth-logout" type="button">Log out</button>
+          </div>
+          <span class="auth-state-message" id="auth-state-message" role="status" aria-live="polite" hidden></span>
+        </div>
       </div>
     </header>
 
@@ -84,9 +94,70 @@
       </section>
 
       <section class="contact section-pad" id="contact" aria-labelledby="contact-title">
-        <div class="container contact-inner"><div><p class="eyebrow eyebrow-light"><span class="eyebrow-line"></span> START A CONVERSATION</p><h2 id="contact-title">Planning a visit<br>to <em>Honnavar?</em></h2></div><div class="contact-copy"><p>Have a question or want to ask about booking? Owner contact details will be added here once confirmed.</p><span class="contact-placeholder">Booking request only · a stay is not confirmed until the owner confirms it. Owner contact details to be confirmed.</span></div><span class="contact-orbit" aria-hidden="true"></span></div>
+        <div class="container contact-inner"><div><p class="eyebrow eyebrow-light"><span class="eyebrow-line"></span> START A CONVERSATION</p><h2 id="contact-title">Planning a visit<br>to <em>Honnavar?</em></h2></div><div class="contact-copy"><p>Have a question or want to ask about booking? Call Eden Homes or send an enquiry.</p><div class="contact-links"><a href="tel:9448317432">9448317432</a><a href="tel:8660345883">8660345883</a><!-- TODO: Add Eden Homes contact email --><a id="contact-email" href="#">Add contact email</a></div><span class="contact-placeholder">An enquiry is not a confirmed reservation. The owner must confirm your stay.</span></div><span class="contact-orbit" aria-hidden="true"></span></div>
       </section>
     </main>
+
+    <dialog class="auth-dialog" id="auth-dialog" aria-labelledby="auth-title">
+      <div class="dialog-shell">
+        <div class="dialog-topbar">
+          <div><p class="dialog-kicker">YOUR EDEN HOMES ACCOUNT</p><h2 id="auth-title">Welcome back</h2></div>
+          <button class="dialog-close" type="button" data-auth-close aria-label="Close account dialog">Close <span aria-hidden="true">×</span></button>
+        </div>
+        <div class="auth-modes" aria-label="Choose an account action">
+          <button class="auth-mode is-active" id="login-mode" type="button" data-auth-mode="login" aria-pressed="true" aria-controls="login-form">Log in</button>
+          <button class="auth-mode" id="signup-mode" type="button" data-auth-mode="signup" aria-pressed="false" aria-controls="signup-form">Sign up</button>
+        </div>
+        <p class="auth-message" id="auth-message" role="status" aria-live="polite"></p>
+        <form class="auth-form" id="login-form" novalidate>
+          <label for="login-email">Email</label>
+          <input id="login-email" name="email" type="email" autocomplete="email" required maxlength="254">
+          <label for="login-password">Password</label>
+          <input id="login-password" name="password" type="password" autocomplete="current-password" required>
+          <button class="button auth-submit" type="submit">Log in</button>
+        </form>
+        <form class="auth-form" id="signup-form" hidden novalidate>
+          <label for="signup-name">Full Name</label>
+          <input id="signup-name" name="full_name" type="text" autocomplete="name" required maxlength="100">
+          <label for="signup-email">Email</label>
+          <input id="signup-email" name="email" type="email" autocomplete="email" required maxlength="254">
+          <label for="signup-password">Create a password</label>
+          <input id="signup-password" name="password" type="password" autocomplete="new-password" minlength="8" required>
+          <label for="signup-password-confirm">Confirm password</label>
+          <input id="signup-password-confirm" name="password-confirm" type="password" autocomplete="new-password" minlength="8" required>
+          <button class="button auth-submit" type="submit">Create account</button>
+        </form>
+        <p class="auth-privacy-note">Your password is sent securely to Supabase Auth and is never shown in the page or logged.</p>
+      </div>
+    </dialog>
+
+    <dialog class="booking-dialog" id="booking-dialog" aria-labelledby="booking-title">
+      <div class="dialog-shell">
+        <div class="dialog-topbar">
+          <div><p class="dialog-kicker">EDEN HOMES ENQUIRY</p><h2 id="booking-title">Ask about a stay</h2></div>
+          <button class="dialog-close" type="button" data-booking-close aria-label="Close booking enquiry">Close <span aria-hidden="true">×</span></button>
+        </div>
+        <form class="booking-form" id="booking-enquiry-form" novalidate>
+          <label for="booking-property">Selected stay</label>
+          <input id="booking-property" name="property" type="text" readonly aria-readonly="true">
+          <label for="booking-name">Full Name</label>
+          <input id="booking-name" name="full_name" type="text" autocomplete="name" required maxlength="100">
+          <label for="booking-phone">Phone Number</label>
+          <input id="booking-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required maxlength="20" aria-describedby="booking-phone-hint">
+          <span class="booking-field-hint" id="booking-phone-hint">Enter a 10-digit Indian mobile number, with or without +91.</span>
+          <label for="booking-email">Email Address</label>
+          <input id="booking-email" name="email" type="email" autocomplete="email" required maxlength="254">
+          <p class="booking-message" id="booking-message" role="status" aria-live="polite"></p>
+          <p class="booking-notice">Submitting an enquiry does not confirm a booking. The owner must confirm your stay.</p>
+          <div class="booking-actions"><button class="button" id="booking-submit" type="submit">Submit Enquiry</button><button class="button button-outline" type="button" data-booking-close>Cancel</button></div>
+          <div class="booking-contact-options" aria-label="Contact Eden Homes by phone">
+            <p>Prefer to call? <a href="tel:9448317432">9448317432</a> or <a href="tel:8660345883">8660345883</a></p>
+            <div class="booking-copy-actions"><button class="button button-small button-outline" type="button" data-copy-number="9448317432">Copy 9448317432</button><button class="button button-small button-outline" type="button" data-copy-number="8660345883">Copy 8660345883</button></div>
+            <p class="booking-copy-status" id="booking-copy-status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </dialog>
 
     <dialog class="property-dialog" id="property-dialog" aria-labelledby="dialog-title">
       <div class="dialog-shell">
@@ -95,6 +166,6 @@
       </div>
     </dialog>
 
-    <footer class="site-footer"><div class="container footer-main"><a class="brand brand-footer" href="#home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M5 27c6-5 11-5 16 0s10 5 15 0"/><path d="M8 32c5-3 9-3 13 0s8 3 12 0"/><path d="M20 25V10m0 2c-5-1-8-4-9-8 5 0 8 2 9 6m1 3c4-4 7-5 11-4-1 4-4 6-10 7"/></svg></span><span class="brand-name">eden <span>homes</span></span></a><p>A welcoming homestay in<br>Honnavar, Karnataka.</p><a class="footer-top" href="#home">Back to top <span aria-hidden="true">↑</span></a></div><div class="container footer-bottom"><span>© <span id="year">2026</span> Eden Homes</span><span>Made for a slower kind of stay.</span></div></footer>
+    <footer class="site-footer"><div class="container footer-main"><a class="brand brand-footer" href="#home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M5 27c6-5 11-5 16 0s10 5 15 0"/><path d="M8 32c5-3 9-3 13 0s8 3 12 0"/><path d="M20 25V10m0 2c-5-1-8-4-9-8 5 0 8 2 9 6m1 3c4-4 7-5 11-4-1 4-4 6-10 7"/></svg></span><span class="brand-name">eden <span>homes</span></span></a><p>A welcoming homestay in<br>Honnavar, Karnataka.</p><div class="footer-contact"><a href="tel:9448317432">9448317432</a><a href="tel:8660345883">8660345883</a></div><a class="footer-top" href="#home">Back to top <span aria-hidden="true">↑</span></a></div><div class="container footer-bottom"><span>© <span id="year">2026</span> Eden Homes</span><span>Made for a slower kind of stay.</span></div></footer>
   </body>
 </html>
