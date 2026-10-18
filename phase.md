@@ -79,6 +79,17 @@ Allow guests to explore each property type and understand the next steps.
 ### Deliverable
 A functional frontend prototype using local sample data.
 
+### Implementation status (2026-10-17)
+- [x] Added image-led 1 BHK and 2 BHK demonstration listings to the existing homepage.
+- [x] Added an accessible property details dialog with a six-image gallery for each type.
+- [x] Clearly marked sample names, descriptions, and photos; unknown prices, capacity, amenities, and availability are not shown as facts.
+- [x] Added contact-to-book actions that lead to the owner contact placeholder and explained that enquiries are not confirmed bookings.
+- [x] Replaced external property image URLs with the six local property photos in `assets/images/properties/`; both cards and galleries use the shared set, with `room-1.jpeg` as the card image.
+- [x] Added a general destination-photo section using only the two supplied destination images without visible watermarks; no named attractions are claimed.
+- [x] Documented local image use, watermark inspection, excluded destination files, and license follow-up in `assets/images/ATTRIBUTIONS.md`.
+- [ ] Add a real booking request form and configurable call/WhatsApp actions after the owner supplies verified contact details and the form handling destination is decided.
+- [ ] Confirm property-photo assignments and verified listing facts with the owner before launch; confirm usage rights for all supplied local images.
+
 ## Phase 3 — Supabase Setup and Data Model
 
 ### Goal

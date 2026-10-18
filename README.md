@@ -155,7 +155,7 @@ See `phase.md` and `PRD.md` for the detailed requirements and acceptance criteri
 
 ## Before Public Launch
 
-- [ ] Replace sample images with genuine property photos.
+- [x] Use the supplied local property photos; confirm usage rights for supplied local images before public launch.
 - [ ] Verify all amenities, capacities, prices, and house rules with the owner.
 - [ ] Configure the correct phone and WhatsApp number.
 - [ ] Test booking requests from a mobile device.

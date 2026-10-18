@@ -61,27 +61,39 @@
 
       <section class="stays section-pad" id="stays" aria-labelledby="stays-title">
         <div class="container">
-          <div class="section-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span> ROOM TO MAKE YOUR OWN</p><h2 id="stays-title">Choose your <em>stay.</em></h2></div><p>Two stay types to start exploring. Ask the owner for current details and pricing.</p></div>
-          <div class="stay-grid">
-            <article class="stay-card">
-              <div class="stay-art stay-art-one" role="img" aria-label="Abstract illustration of a coastal home surrounded by greenery"><span class="sample-label">Illustration · not a property photo</span><div class="illustrated-home"><div class="roof"></div><div class="home-body"><i></i><i></i><b></b></div><div class="plant plant-a"></div><div class="plant plant-b"></div></div><span class="art-sun"></span></div>
-              <div class="stay-info"><div><p class="card-kicker">A COMFORTABLE BASE</p><h3>1 BHK stay</h3></div><span class="card-number">01</span></div>
-              <div class="stay-bottom"><p>A one-bedroom option for your time in Honnavar. Ask the owner for details.</p><a class="round-link" href="#contact" aria-label="Ask about the 1 BHK stay"><span aria-hidden="true">↗</span></a></div>
-            </article>
-            <article class="stay-card">
-              <div class="stay-art stay-art-two" role="img" aria-label="Abstract illustration of a home nestled in a green coastal landscape"><span class="sample-label">Illustration · not a property photo</span><div class="illustrated-home home-large"><div class="roof"></div><div class="home-body"><i></i><i></i><b></b></div><div class="plant plant-a"></div><div class="plant plant-b"></div></div><span class="art-sun"></span></div>
-              <div class="stay-info"><div><p class="card-kicker">A LITTLE MORE ROOM</p><h3>2 BHK stay</h3></div><span class="card-number">02</span></div>
-              <div class="stay-bottom"><p>A two-bedroom option for your time in Honnavar. Ask the owner for details.</p><a class="round-link" href="#contact" aria-label="Ask about the 2 BHK stay"><span aria-hidden="true">↗</span></a></div>
-            </article>
+          <div class="section-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span> ROOM TO MAKE YOUR OWN</p><h2 id="stays-title">Our <em>Stays</em></h2></div><p>Explore the two stay types with the local property photos supplied for Eden Homes.</p></div>
+          <div class="stay-grid" id="stay-listings" aria-live="polite"></div>
+          <p class="details-note"><span aria-hidden="true">✳</span> Listing names and descriptions are demonstration content. Property-specific amenities, capacity, price, and availability require owner confirmation.</p>
+        </div>
+      </section>
+
+      <section class="destination section-pad" id="destination" aria-labelledby="destination-title">
+        <div class="container">
+          <div class="section-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span> DESTINATION PHOTOS</p><h2 id="destination-title">A glimpse of <em>Honnavar.</em></h2></div><p>General destination imagery. No specific attraction or location is identified by these photos.</p></div>
+          <div class="destination-grid">
+            <figure class="destination-card">
+              <div class="destination-image-wrap"><img src="assets/images/destinations/hnr3.webp" alt="Elevated wooden walkway crossing a densely green landscape." loading="lazy" decoding="async"><span class="destination-fallback">Destination photo unavailable</span></div>
+              <figcaption>Green landscape and walkway</figcaption>
+            </figure>
+            <figure class="destination-card">
+              <div class="destination-image-wrap"><img src="assets/images/destinations/hnr6.webp" alt="Sunset over the water behind a sign reading I Love Eco Beach Honnavara." loading="lazy" decoding="async"><span class="destination-fallback">Destination photo unavailable</span></div>
+              <figcaption>Sunset and a locally marked sign</figcaption>
+            </figure>
           </div>
-          <p class="details-note"><span aria-hidden="true">✳</span> Property photos, amenities, capacity, pricing, and availability will be added once verified by the owner.</p>
         </div>
       </section>
 
       <section class="contact section-pad" id="contact" aria-labelledby="contact-title">
-        <div class="container contact-inner"><div><p class="eyebrow eyebrow-light"><span class="eyebrow-line"></span> START A CONVERSATION</p><h2 id="contact-title">Planning a visit<br>to <em>Honnavar?</em></h2></div><div class="contact-copy"><p>Have a question about the 1 BHK or 2 BHK stay? Contact details will be added here once confirmed by the owner.</p><span class="contact-placeholder">Owner contact details to be confirmed</span></div><span class="contact-orbit" aria-hidden="true"></span></div>
+        <div class="container contact-inner"><div><p class="eyebrow eyebrow-light"><span class="eyebrow-line"></span> START A CONVERSATION</p><h2 id="contact-title">Planning a visit<br>to <em>Honnavar?</em></h2></div><div class="contact-copy"><p>Have a question or want to ask about booking? Owner contact details will be added here once confirmed.</p><span class="contact-placeholder">Booking request only · a stay is not confirmed until the owner confirms it. Owner contact details to be confirmed.</span></div><span class="contact-orbit" aria-hidden="true"></span></div>
       </section>
     </main>
+
+    <dialog class="property-dialog" id="property-dialog" aria-labelledby="dialog-title">
+      <div class="dialog-shell">
+        <div class="dialog-topbar"><p class="dialog-kicker">DEMONSTRATION LISTING</p><button class="dialog-close" type="button" data-dialog-close aria-label="Close property details">Close <span aria-hidden="true">×</span></button></div>
+        <div class="dialog-content" id="dialog-content"></div>
+      </div>
+    </dialog>
 
     <footer class="site-footer"><div class="container footer-main"><a class="brand brand-footer" href="#home"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M5 27c6-5 11-5 16 0s10 5 15 0"/><path d="M8 32c5-3 9-3 13 0s8 3 12 0"/><path d="M20 25V10m0 2c-5-1-8-4-9-8 5 0 8 2 9 6m1 3c4-4 7-5 11-4-1 4-4 6-10 7"/></svg></span><span class="brand-name">eden <span>homes</span></span></a><p>A welcoming homestay in<br>Honnavar, Karnataka.</p><a class="footer-top" href="#home">Back to top <span aria-hidden="true">↑</span></a></div><div class="container footer-bottom"><span>© <span id="year">2026</span> Eden Homes</span><span>Made for a slower kind of stay.</span></div></footer>
   </body>
