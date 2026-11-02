@@ -1,20 +1,39 @@
 # Design
 
-## Status
+## Phase 2 implementation
 
-No approved visual design, brand palette, typography, photography, or layout
-specification was present in the audited repository. Phase 1 of the existing
-roadmap links a tourism website as inspiration; it is not an approved design
-system or an asset source.
+The homepage uses a coastal-inspired palette of forest green, warm cream, sand,
+charcoal, and a restrained terracotta accent. System sans-serif text is paired
+with serif display headings. Spacing and typography scale responsively; cards,
+navigation, CTAs, and placeholder art share the same visual language.
+This is the current interface direction, not an owner-approved formal brand
+identity.
 
-## Principles for future design work
+The frontend has no owner-approved photographs or map location. Image areas are
+clearly labeled abstract illustration placeholders and must be replaced with
+approved Eden Homes/property/boating imagery before representing real places.
+The location graphic is not a map and does not imply a property address or
+coordinates.
 
-- Keep the experience responsive and readable on small screens.
-- Clearly distinguish an enquiry from a confirmed booking.
-- Publish only business information verified by the owner.
-- Use genuine, approved property and destination photography.
-- Do not imply prices, amenities, capacity, availability, or boating terms that
-  have not been confirmed.
+## Interaction and accessibility
 
-The frontend currently displays a neutral foundation placeholder. Product
-branding and customer-facing layouts await Phase 2 and owner review.
+- Sticky navigation provides section links and an accessible mobile menu with
+  Escape-to-close behavior.
+- Focus indicators, a skip link, semantic headings, descriptive placeholder
+  labels, and telephone links support keyboard and assistive-technology use.
+- Reduced-motion preferences disable smooth scrolling and transitions.
+- The homepage links to the individual 1 BHK, 2 BHK, and boating service pages.
+- Service-page enquiry links lead to the existing owner contact section; no
+  booking form or WhatsApp submission flow is implemented in Phase 3.
+- Normal-size secondary text and interactive hover colors retain at least
+  4.5:1 contrast on their light surfaces. The terracotta display accent is
+  limited to large heading text, where it meets the 3:1 large-text threshold.
+
+## Content that still requires owner input
+
+Supply approved photos for the homepage, each accommodation option, boating,
+and Honnavar location. Confirm exact business descriptions, whether contact
+numbers should be published, and an exact property location before adding a
+map. Prices, amenities, capacity, availability, and boating terms remain
+unpublished pending verification. The future WhatsApp form destination number
+also requires owner confirmation.

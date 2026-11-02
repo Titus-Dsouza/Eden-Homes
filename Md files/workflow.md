@@ -1,10 +1,15 @@
 ## Workflow
 
-1. **Explore Services** – Visitors explore 1 BHK, 2 BHK, and boating options.
-2. **Submit Enquiry** – Visitors fill out the relevant enquiry form.
-3. **Save Enquiry** – Enquiry details are stored in the database.
-4. **WhatsApp** – WhatsApp opens with a prefilled enquiry message.
-5. **Owner Review** – The owner reviews the request and confirms availability.
-6. **Manage Enquiries** – Owners manage enquiries through the dashboard.
+1. **Explore Services** – Visitors explore the 1 BHK, 2 BHK, and boating pages.
+2. **Enter Details (planned)** – Visitors complete the appropriate website form.
+3. **Prepare Message (planned)** – The browser opens WhatsApp with a prefilled
+   message; the visitor must manually press Send.
+4. **Owner Review** – The owner reviews the WhatsApp message and responds
+   directly.
 
-**Note:** Submitting an enquiry does not guarantee a booking. Final confirmation is provided by the owner.
+The WhatsApp destination number must be confirmed by the owner before the
+forms are implemented. The initial version does not save enquiry details,
+create enquiry history, or provide an owner dashboard.
+
+**Note:** Submitting a form or opening WhatsApp does not confirm a booking.
+Final confirmation is provided by the owner.

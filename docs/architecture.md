@@ -10,9 +10,10 @@ URL parser. The backend is an Express service with Zod-validated configuration,
 a health endpoint, origin-restricted CORS, and centralized 404/error handling.
 The apps are not connected to one another yet.
 
-`database/` holds database-specific planning and future migrations. Supabase
-PostgreSQL is the proposed database, but there is no project connection, schema,
-or migration in this repository. No Supabase SDK or credentials are needed yet.
+The initial release does not use a database. `database/` is reserved for
+optional future database planning; it contains no active schema or migrations.
+Supabase is not selected for the initial version, and no database SDK or
+credentials are needed.
 
 ## Boundaries
 
@@ -20,8 +21,7 @@ or migration in this repository. No Supabase SDK or credentials are needed yet.
   are embedded in client assets and must never contain secrets.
 - Backend-only credentials, if introduced later, belong in the backend host's
   environment configuration and must never be copied into frontend variables.
-- Database schema changes belong in `database/migrations/`, separate from
-  application source.
+- No customer enquiries are persisted by the current application.
 - The frontend deploys independently to Vercel; any production API deploys to a
   separate Node.js host.
 - Backend request handling is separated into `routes/`, `controllers/`,
@@ -32,12 +32,21 @@ or migration in this repository. No Supabase SDK or credentials are needed yet.
 - Frontend and backend lint/type checks use Oxlint and TypeScript. Their
   dependencies remain independent.
 
-## Intended flow (planned, not implemented)
+## Initial enquiry approach (planned, not implemented)
 
-Visitors will browse verified accommodation and boating information and send
-enquiries. The owner will review requests and confirm details directly.
-Enquiries are not bookings. Persistent storage, authorization, privacy controls,
-and any owner interface require their own design and tests before release.
+Visitors will browse service information and complete an accommodation or
+boating form. The browser will prepare a prefilled WhatsApp message for the
+visitor to review and manually send to the owner. The WhatsApp destination
+number must be confirmed by the owner before implementation. The site will not
+store the enquiry or claim the message was sent; enquiries are not bookings.
+
+Accommodation form fields: full name, phone number, selected property (exactly
+`1 BHK` or `2 BHK`), check-in, check-out, and guest count. Boating form fields:
+full name, phone number, preferred date, participant count, and preferred
+duration.
+
+Database storage, enquiry history, authentication, and an owner dashboard are
+optional future upgrades, not initial-release requirements.
 
 ## Backend scope
 
@@ -46,9 +55,10 @@ routes return JSON 404 responses; unhandled errors return a generic response
 and are logged server-side. CORS emits an allow-origin header only for the
 configured frontend origin (or requests without an `Origin` header).
 
-No product routes, Supabase integration, authentication, or owner operations
-are present. Add backend features only when required by an approved product
-phase.
+No product routes, database integration, authentication, or owner operations
+are present. The planned WhatsApp form flow is browser-only and requires no
+backend product API. Add backend features only after a separately approved
+requirement.
 
 ## Verification status
 

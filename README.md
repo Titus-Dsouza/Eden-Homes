@@ -1,27 +1,40 @@
 # Eden Homes
 
-Eden Homes is a planned homestay and boating enquiry website for Honnavar,
-Karnataka, India. Enquiries are not confirmed bookings: availability and terms
-must be confirmed by the owner. The current website is a foundation placeholder;
-customer-facing service pages and enquiry workflows are not implemented.
+Eden Homes is a homestay and boating enquiry website for Honnavar, Karnataka,
+India. Enquiries are not confirmed bookings: availability and terms must be
+confirmed by the owner. The current Phase 2 worktree contains a responsive
+homepage and dedicated 1 BHK, 2 BHK, and boating service pages. Website enquiry
+forms and WhatsApp message preparation are planned; no enquiry has been sent
+or booking confirmed by this site.
 
 ## Project status
 
-- **Implemented:** React/Vite frontend shell, Express health endpoint, validated
-  backend configuration, independent app dependencies, and Vercel SPA routing.
-- **Tested:** See [Phase 1 status in the roadmap](docs/roadmap.md) and
-  [verification record](docs/phase-0-audit.md).
-- **Planned:** Verified service information and future accommodation and boating
-  enquiry experiences.
+- **Implemented:** Responsive homepage, section navigation, accommodation and
+  boating previews, dedicated service pages, contact links, labeled image
+  placeholders, Express health endpoint, and Vercel SPA routing.
+- **Phase 3:** Dedicated service pages are implemented and verified locally on
+  `phase-3/service-pages`; see the [roadmap](docs/roadmap.md) for details.
+- **Tested:** Frontend checks and browser viewport smoke tests are recorded in
+  [Phase 2 of the roadmap](docs/roadmap.md); Phase 1 checks are in the
+  [Phase 0 verification record](docs/phase-0-audit.md).
+- **Planned:** Owner-approved photography and WhatsApp-only accommodation and
+  boating enquiry forms. The WhatsApp destination number must be confirmed by
+  the owner before that functionality is implemented.
 - **Pending owner confirmation:** Pricing, facilities, capacities, availability,
-  boating details, and public use of contact information.
+  boating details, approved photography, exact property location, and public
+  use of contact information.
+- **Not in the initial release:** Supabase or another database, enquiry
+  storage/history, owner authentication, and an owner dashboard. These remain
+  possible future upgrades requiring separate approval.
 - **Excluded from the initial scope:** An AI concierge.
 
 ## Technology
 
 - Frontend: React, Vite, TypeScript, Tailwind CSS, React Router DOM, Lucide React
 - Backend: Node.js, Express, TypeScript, Zod
-- Planned database: Supabase PostgreSQL; not connected
+- Enquiry delivery: Browser-generated WhatsApp Click-to-Chat message (planned;
+  destination number pending owner confirmation)
+- Database: None for the initial release; no enquiry persistence
 - Frontend hosting: Vercel
 - Backend hosting: separate Node.js provider; selection pending
 
@@ -30,9 +43,9 @@ customer-facing service pages and enquiry workflows are not implemented.
 ```text
 frontend/       Independent Vite single-page application
 backend/        Independent Express service and health endpoint
-database/       Database planning and future migrations
+database/       Reserved for optional future database planning; no migrations
 docs/           Architecture, deployment, product, design, and roadmap docs
-Md files/       Preserved source Markdown documents
+Md files/       Source Markdown and current phase/decision records
 .github/        Frontend and backend CI workflow
 ```
 
@@ -83,7 +96,8 @@ npm run build
 
 `npm start` starts the compiled server. `FRONTEND_URL` configures the allowed
 browser origin for CORS. Production must set it to the frontend's exact origin.
-There is no Supabase connection or product API.
+There is no database connection, customer enquiry API, form submission, or
+owner dashboard.
 
 ## Environment and secrets
 
@@ -94,7 +108,8 @@ examples contain names and safe local defaults only.
 
 ## Frontend deployment
 
-The live frontend is available at <https://eden-homes-chi.vercel.app/>.
+The existing live frontend is available at <https://eden-homes-chi.vercel.app/>.
+Current Phase 2/3 work is local and has not been deployed.
 The Vercel project should use repository `Titus-Dsouza/Eden-Homes` with:
 
 - Root Directory: `frontend`
@@ -111,7 +126,8 @@ was performed as part of this phase.
 Deploy `backend/` separately to a Node.js host; the provider is not selected.
 Use Node.js 22, `npm ci`, `npm run build`, and `npm start`. Configure `PORT`,
 `NODE_ENV`, and the production `FRONTEND_URL` in the host environment. Supabase
-credentials are not required until a database integration is approved.
+credentials are not required; no database integration is planned for the
+initial release.
 
 More detail: [architecture](docs/architecture.md),
 [deployment](docs/deployment.md), [technology stack](docs/techstack.md), and

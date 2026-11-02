@@ -33,14 +33,16 @@ added only when an actual API integration and hosting provider are selected.
   are implemented).
 - `backend/.env.example`: `PORT` and `NODE_ENV`, validated by
   `backend/src/config/env.ts`.
-- No Supabase variables are currently required. When integration is added,
-  document them in the backend example and keep service-role credentials
-  server-side only.
+- No database variables are required for the initial release. The planned
+  WhatsApp Click-to-Chat destination number must be confirmed by the owner
+  before implementation and must not be invented or inferred from the existing
+  telephone numbers.
 
 Local `.env` files are ignored by Git. Never commit credentials or paste them
 into frontend configuration.
 
 ## Database
 
-Supabase PostgreSQL is the proposed database. No migrations, project URL, API
-keys, or production database connection are configured yet.
+The initial release does not use a database and must not create migrations or
+database credentials. Database storage, enquiry history, and an owner dashboard
+are possible optional upgrades requiring separate approval.

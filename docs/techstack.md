@@ -7,18 +7,21 @@
 | Frontend | React, Vite, TypeScript | Foundation implemented |
 | Styling | Tailwind CSS | Configured with the Vite plugin |
 | Routing | React Router DOM | Root and not-found routes implemented |
-| Icons | Lucide React | Installed; not yet used by product UI |
+| Icons | Lucide React | Used by the homepage and service pages |
 | Frontend lint/type checks | Oxlint and TypeScript | Configured |
 | Backend | Node.js, Express, TypeScript | Health service and middleware foundation |
 | Validation | Zod | Validates backend environment configuration |
 | Backend lint/type checks | Oxlint and TypeScript | Configured |
-| Database | Supabase PostgreSQL | Proposed; not connected |
+| Enquiry delivery | Browser-generated WhatsApp Click-to-Chat message | Planned; destination number pending owner confirmation |
+| Database | None for the initial release | Enquiries are not persisted; possible future optional upgrade |
 | Frontend hosting | Vercel | Live deployment reported and URL verified; unchanged by this phase |
 | Backend hosting | Separate Node.js host | Provider not selected |
 
-Frontend and backend dependencies are managed independently. Supabase SDK,
-authentication, database schema, and migration tooling are intentionally
-deferred until the relevant product phase.
+Frontend and backend dependencies are managed independently. Supabase, any
+other database, authentication, schema, and migration tooling are not required
+for the initial release. Enquiries will be prepared in the browser for the
+customer to manually send through WhatsApp; no API or database submission is
+planned.
 
 ## Runtime
 
@@ -35,8 +38,9 @@ database has been selected.
 ## Verification
 
 CI checks are configured in `.github/workflows/ci.yml`. Phase 1 local check
-results are recorded in [`roadmap.md`](roadmap.md). No database, enquiry flow,
-authentication, owner dashboard, or AI concierge is implemented.
+results are recorded in [`roadmap.md`](roadmap.md). No enquiry form, WhatsApp
+message generation, enquiry persistence, authentication, owner dashboard, or AI
+concierge is implemented.
 
 The configured linter is Oxlint, not ESLint. An ESLint TypeScript plugin install
 was rejected because the frontend currently uses TypeScript 7 while
