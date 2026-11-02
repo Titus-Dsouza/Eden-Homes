@@ -33,11 +33,11 @@ without implementing customer-facing product features.
 - [x] Documentation organized.
 - [x] Frontend build verified.
 - [x] Backend checks completed where possible.
-- [ ] GitHub changes committed and pushed.
+- [x] GitHub changes committed and pushed.
 - [x] Phase 0 completion report documented.
 
-Items are checked only after local verification. GitHub push remains unchecked
-until completed and verified.
+Items are checked only after verification. The local checks passed and the
+feature branch was pushed without merging it into `main`.
 
 ---
 

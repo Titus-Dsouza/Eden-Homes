@@ -45,5 +45,7 @@ implemented.
 - Dependency installation reported zero known vulnerabilities for each
   application.
 
-The local foundation is verified. The Phase 0 GitHub change remains pending
-until the feature branch is committed and pushed.
+The foundation is verified and committed to
+`phase-0/repository-foundation`, which was pushed to GitHub. No production
+deployment has occurred; product features and owner verification remain future
+work.

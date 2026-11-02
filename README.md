@@ -85,11 +85,11 @@ integration. See [deployment notes](docs/deployment.md).
 
 ## Current status
 
-The repository foundation and checks are being established. The frontend is a
-starter shell, not the finished website; the backend contains only a health
-check. Listings, enquiry submission, authentication, owner tools, and database
-integration are planned, not implemented or tested. Business details such as
-pricing, amenities, capacity, availability, and boating terms require owner
-confirmation before publication.
+The Phase 0 repository foundation is complete and its local checks pass. The
+frontend is a starter shell, not the finished website; the backend contains
+only a health check. Listings, enquiry submission, authentication, owner tools,
+and database integration are planned, not implemented or tested. No production
+deployment has occurred. Business details such as pricing, amenities, capacity,
+availability, and boating terms require owner confirmation before publication.
 
 See [the roadmap](docs/roadmap.md) and [the Phase 0 audit](docs/phase-0-audit.md).
