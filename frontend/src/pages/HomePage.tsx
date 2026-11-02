@@ -1,6 +1,8 @@
+import { PageContainer } from '../components/PageContainer'
+
 export function HomePage() {
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col justify-center px-6 py-16">
+    <PageContainer className="flex min-h-screen flex-col justify-center">
       <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
         Eden Homes
       </p>
@@ -15,6 +17,6 @@ export function HomePage() {
         Accommodation and boating requests will be enquiries only; arrangements
         require confirmation from the owner.
       </p>
-    </main>
+    </PageContainer>
   )
 }

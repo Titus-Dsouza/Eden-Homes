@@ -5,7 +5,9 @@
 The Vercel project should use repository `Titus-Dsouza/Eden-Homes`, root
 directory `frontend`, Vite framework preset, `npm install`, `npm run build`, and
 `dist` as the output directory. `frontend/vercel.json` sends SPA routes to
-`index.html`. The Vercel project has not been created or deployed by this work.
+`index.html`. The live site is <https://eden-homes-chi.vercel.app/>; this phase
+does not modify that deployment. The Vercel project dashboard's Root Directory
+setting could not be independently inspected from the local workspace.
 
 `VITE_API_BASE_URL` is an optional, public URL read by the frontend service
 configuration. Set it only after a backend API is deployed. Any `VITE_`

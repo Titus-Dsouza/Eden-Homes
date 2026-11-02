@@ -17,4 +17,4 @@ system or an asset source.
   have not been confirmed.
 
 The frontend currently displays a neutral foundation placeholder. Product
-branding and customer-facing layouts await Phase 1 and owner review.
+branding and customer-facing layouts await Phase 2 and owner review.

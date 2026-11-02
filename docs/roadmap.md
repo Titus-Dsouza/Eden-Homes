@@ -1,12 +1,12 @@
 # EDEN HOMES — COMPLETE DEVELOPMENT ROADMAP
-## Phase 1 to Phase 8
+## Phase 0 to Phase 8
 
 **Project:** Eden Homes  
 **Business:** Homestay and boating enquiries  
 **Location:** Honnavar, Karnataka, India  
 **Repository:** https://github.com/Titus-Dsouza/Eden-Homes
 
-> Phase 0 status is tracked below. The AI concierge described in the original
+> Phase 0 and Phase 1 status are tracked below. The AI concierge described in the original
 > Phase 6 is excluded from the initial project scope; do not implement it without
 > a separate owner-approved change. The remaining phases below are future plans,
 > not evidence of implemented or verified features.
@@ -36,74 +36,97 @@ without implementing customer-facing product features.
 - [x] GitHub changes committed and pushed.
 - [x] Phase 0 completion report documented.
 
-Items are checked only after verification. The local checks passed and the
-feature branch was pushed without merging it into `main`.
+Items are checked only after verification. The local checks passed; the
+foundation was merged into `main` through pull request #1.
 
 ---
 
-# PHASE 1 — PROJECT FOUNDATION AND WEBSITE DESIGN
+# PHASE 1 — PROJECT FOUNDATION AND ARCHITECTURE
 
 ## Objective
-Establish the project structure and create a premium, responsive website for Eden Homes.
+Verify and complete the maintainable frontend and backend foundations while
+preserving the Phase 0 separation and deployment setup. Do not build product
+pages, enquiry flows, database integration, or an AI concierge in this phase.
 
 ### Tasks
 
-1. Inspect the existing GitHub repository before making changes.
-2. Organize the project into separate `frontend/` and `backend/` directories.
-3. Establish a clean and maintainable folder structure.
-4. Create the Eden Homes homepage.
-5. Build responsive navigation.
-6. Introduce the three main services:
-   - 1 BHK Accommodation
-   - 2 BHK Accommodation
-   - Boating Experience
-7. Create the homepage hero section.
-8. Add relevant property and destination imagery.
-9. Create reusable buttons, cards and layout components.
-10. Add a footer and contact section.
-11. Establish consistent typography, colours and spacing.
-12. Ensure responsive layouts for mobile, tablet and desktop.
-
-### Design Reference
-
-Use the following design as visual inspiration:
-
-https://dribbble.com/shots/22243004-Alappuzha-Tourism-Website
-
-Create a premium tourism-inspired website while maintaining Eden Homes branding.
+1. Verify frontend and backend ownership and independent dependencies.
+2. Keep the React/Vite/TypeScript/Tailwind/React Router/Lucide frontend.
+3. Keep the Node.js/Express/TypeScript/Zod backend.
+4. Separate backend routes, controllers, middleware, and configuration.
+5. Validate environment values and restrict browser CORS to the configured
+   frontend origin.
+6. Preserve the health endpoint and add centralized 404/error responses.
+7. Keep Supabase PostgreSQL planned, without connecting it in this phase.
+8. Verify lint, TypeScript, tests, builds, Vercel SPA routing, and CI.
+9. Document implemented, tested, planned, and pending work.
 
 ### Acceptance Criteria
 
-- Homepage loads correctly.
-- All navigation links work.
-- Three services are visible.
-- Responsive design works.
-- No invented business information is displayed.
-- Frontend and backend folders are separate.
+- [x] Phase 0 implementation inspected and preserved.
+- [x] Frontend and backend remain independently configured.
+- [x] Frontend routing, global CSS, Tailwind, TypeScript, and lint configuration verified.
+- [x] Reusable responsive page container established.
+- [x] Backend environment validation, CORS, routes, controllers, 404, and error handling implemented.
+- [x] Health endpoint retained and covered by tests.
+- [x] Environment examples document public frontend and server-only backend settings.
+- [x] Vercel SPA rewrite and CI workflow verified.
+- [x] Documentation updated; no product/database feature is claimed.
+- [x] Frontend lint, typecheck, and production build pass.
+- [x] Backend lint, typecheck, tests, and production build pass.
+- [x] Backend health endpoint verified at runtime.
+- [ ] Changes committed to the Phase 1 branch (awaiting owner approval).
 
 ### Deliverable
 
-A complete, responsive Eden Homes homepage.
+An independently configured frontend and backend foundation, ready for a
+separately approved customer-facing product phase. This phase does not implement
+service pages, enquiry forms, or database integration.
+
+### Verification record
+
+Local checks use Node.js 26.11.1 and npm 11.20.0; CI specifies Node.js 22.
+Dependency installation, frontend lint/typecheck/build, backend lint/typecheck/
+tests/build, and backend runtime health checks passed on this Phase 1 worktree.
+The live Vercel site and a nested route returned HTTP 200 during inspection; no
+deployment was performed. GitHub CI and the checked-in Vercel config were
+inspected. The Vercel dashboard Root Directory setting was not independently
+accessible from this workspace.
+
+The configured lint tool is Oxlint rather than ESLint. An ESLint TypeScript
+plugin install is blocked by its declared TypeScript peer range (`<6.1.0`)
+against the existing frontend TypeScript 7. The existing linter and TypeScript
+checks pass; adopting ESLint specifically requires an approved toolchain
+alignment.
+
+The root `README.md` is a new repository overview. The original README and other
+source Markdown files are preserved unchanged under `Md files/`.
+
+The website design tasks from the previous roadmap wording are deferred to
+Phase 2, together with the service listing/enquiry interface. Existing service
+and enquiry requirements remain future scope and require owner verification.
 
 ---
 
-# PHASE 2 — PROPERTY LISTINGS AND SERVICE ENQUIRY INTERFACE
+# PHASE 2 — WEBSITE DESIGN, PROPERTY LISTINGS AND SERVICE ENQUIRY INTERFACE
 
 ## Objective
-Allow visitors to explore accommodation and boating services.
+Create the responsive customer-facing website and allow visitors to explore
+accommodation and boating services.
 
 ### Tasks
 
-1. Create a dedicated 1 BHK section.
-2. Create a dedicated 2 BHK section.
-3. Create a dedicated Boating section.
-4. Add property photographs and galleries.
-5. Add property descriptions.
-6. Display verified amenities and guest capacity.
-7. Add pricing only after owner verification.
-8. Add house rules and relevant conditions.
-9. Create separate service cards.
-10. Add appropriate action buttons.
+1. Create the Eden Homes homepage, responsive navigation, hero, footer and contact section.
+2. Introduce the 1 BHK Accommodation, 2 BHK Accommodation and Boating services.
+3. Create reusable buttons, cards and layout components as needed.
+4. Establish approved typography, colours, spacing and responsive behavior.
+5. Create a dedicated 1 BHK section.
+6. Create a dedicated 2 BHK section.
+7. Create a dedicated Boating section.
+8. Add genuine, owner-approved property photographs and descriptions.
+9. Display amenities and guest capacity only after owner verification.
+10. Add pricing, house rules and conditions only after owner verification.
+11. Add the separate accommodation and boating enquiry forms described below.
 
 ### Service Actions
 
