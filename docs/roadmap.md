@@ -6,6 +6,39 @@
 **Location:** Honnavar, Karnataka, India  
 **Repository:** https://github.com/Titus-Dsouza/Eden-Homes
 
+> Phase 0 status is tracked below. The AI concierge described in the original
+> Phase 6 is excluded from the initial project scope; do not implement it without
+> a separate owner-approved change. The remaining phases below are future plans,
+> not evidence of implemented or verified features.
+
+---
+
+# PHASE 0 — REPOSITORY AUDIT AND FOUNDATION
+
+## Objective
+
+Audit the repository and prepare independent frontend and backend foundations
+without implementing customer-facing product features.
+
+## Acceptance checklist
+
+- [x] Repository fully audited.
+- [x] Existing code and assets reviewed.
+- [x] Unnecessary files safely removed.
+- [x] Frontend and backend separated.
+- [x] Git configuration prepared.
+- [x] Environment examples prepared.
+- [x] Vercel configuration prepared.
+- [x] Backend deployment approach documented.
+- [x] Documentation organized.
+- [x] Frontend build verified.
+- [x] Backend checks completed where possible.
+- [x] GitHub changes committed and pushed.
+- [x] Phase 0 completion report documented.
+
+Items are checked only after verification. The local checks passed and the
+feature branch was pushed without merging it into `main`.
+
 ---
 
 # PHASE 1 — PROJECT FOUNDATION AND WEBSITE DESIGN
@@ -625,4 +658,3 @@ Never mark a phase complete merely because code has been generated.
 11. Owner manually confirms the booking.
 
 **Core principle:** Eden Homes is an enquiry-first platform. The owner remains responsible for confirming accommodation and boating arrangements.
-
