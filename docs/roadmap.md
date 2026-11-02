@@ -75,7 +75,7 @@ pages, enquiry flows, database integration, or an AI concierge in this phase.
 - [x] Frontend lint, typecheck, and production build pass.
 - [x] Backend lint, typecheck, tests, and production build pass.
 - [x] Backend health endpoint verified at runtime.
-- [ ] Changes committed to the Phase 1 branch (awaiting owner approval).
+- [x] Changes committed locally to `phase-1/project-foundation`; not pushed.
 
 ### Deliverable
 
