@@ -1,0 +1,35 @@
+.enquiry-section {
+  scroll-margin-top: 92px;
+}
+
+.form-configuration-error[hidden] {
+  display: none;
+}
+
+.enquiry-form {
+  border-color: #d8d4c8;
+  background: #fbfaf6;
+  box-shadow: none;
+}
+
+.form-field label {
+  color: #294a3d;
+  letter-spacing: 0.025em;
+}
+
+.form-field input,
+.form-field select {
+  border-color: #d2cec2;
+  background: #fbfaf6;
+}
+
+.form-field input:focus,
+.form-field select:focus {
+  border-color: #245247;
+  outline-color: #d0a52e;
+}
+
+.form-help,
+.form-disclaimer {
+  color: #687168;
+}

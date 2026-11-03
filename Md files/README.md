@@ -1,95 +1,39 @@
 # Eden Homes
 
-Eden Homes is planned as a responsive homestay and boating enquiry website for
-Honnavar, Karnataka, India. Enquiries are not confirmed bookings: the owner must
-confirm availability and terms directly. No customer-facing product features are
-implemented yet.
+Eden Homes is a static website for exploring homestay accommodation and
+boating enquiries in Honnavar, Karnataka. The public website uses HTML5, CSS3,
+and browser-native JavaScript; it does not need React, TypeScript, Vite, npm, or
+a frontend build.
 
-## Technology
+## Current features
 
-- Frontend: React, Vite, TypeScript, Tailwind CSS, React Router DOM, Lucide React
-- Backend: Node.js, Express, TypeScript, Zod
-- Planned database: Supabase PostgreSQL; no database connection or migrations yet
-- Frontend hosting target: Vercel
-- Backend hosting: a separate Node.js host; provider selection is pending
+- Homepage and directly served 1 BHK, 2 BHK, and boating pages.
+- Responsive navigation, labeled placeholder artwork, contact section, and
+  click-to-call links.
+- Accommodation and boating forms that validate in the browser and prepare a
+  WhatsApp message for the visitor to review and manually send.
+- No enquiry database, persistence, API submission, or booking confirmation.
 
-## Repository structure
+## WhatsApp configuration
 
-```text
-frontend/       Independent Vite single-page application
-backend/        Independent Express API foundation and health check
-database/       Database planning and future migrations
-docs/           Product, architecture, design, mobile, deployment, and roadmap docs
-.github/        Frontend and backend CI checks
-```
+The destination has not been confirmed by the owner. The default value in
+`frontend/js/config.js` is empty, and the forms show a configuration error until
+the owner supplies a number. Configure it as international digits only after
+confirmation. Do not infer it from the phone contacts (`9448327432` and
+`8660345883`).
 
-## Requirements
+## Local use and deployment
 
-Use Node.js 22 (or a Vite-supported Node.js version) and npm. Frontend and backend
-have separate manifests, lockfiles, dependencies, and commands.
+Open `frontend/index.html` directly or serve the `frontend/` directory with a
+static file server. Vercel uses `frontend` as its root, the `Other` framework
+preset, and no install or build command. Nested HTML pages are static routes;
+no SPA rewrite is required. See the repository `README.md` and
+`docs/deployment.md`.
 
-## Frontend development
+## Phase records
 
-```sh
-cd frontend
-npm ci
-cp .env.example .env
-npm run dev
-```
-
-`npm run lint` checks the frontend and `npm run build` performs TypeScript
-project checks and creates the production bundle in `frontend/dist/`.
-`VITE_API_BASE_URL` is an optional API base URL; no API-backed product feature
-uses it yet.
-
-## Backend development
-
-```sh
-cd backend
-npm ci
-cp .env.example .env
-npm run dev
-```
-
-The backend currently exposes only `GET /health`. Run `npm run typecheck`,
-`npm test`, and `npm run build` for checks. `npm start` starts the compiled
-server. No Supabase credentials are currently required; never place a
-service-role key in the frontend.
-
-## Environment configuration
-
-Copy the relevant `.env.example` to `.env` in that application directory.
-Frontend variables must use the `VITE_` prefix and are public in built assets.
-Backend variables are read only by the backend. `.env` files are ignored by
-Git; only the examples are tracked. See [deployment and environment notes](docs/deployment.md).
-
-## Vercel frontend deployment
-
-Create a Vercel project for `Titus-Dsouza/Eden-Homes` with:
-
-- Root Directory: `frontend`
-- Framework Preset: Vite
-- Install Command: `npm install`
-- Build Command: `npm run build`
-- Output Directory: `dist`
-
-The SPA rewrite is in `frontend/vercel.json`. Add `VITE_API_BASE_URL` in Vercel
-only when an API endpoint is available. No deployment has been performed.
-
-## Backend deployment
-
-Deploy `backend/` separately to a Node.js host. Use Node.js 22, install with
-`npm ci`, build with `npm run build`, and start with `npm start`. The current
-health endpoint is only a foundation; there is no production API or database
-integration. See [deployment notes](docs/deployment.md).
-
-## Current status
-
-The Phase 0 repository foundation is complete and its local checks pass. The
-frontend is a starter shell, not the finished website; the backend contains
-only a health check. Listings, enquiry submission, authentication, owner tools,
-and database integration are planned, not implemented or tested. No production
-deployment has occurred. Business details such as pricing, amenities, capacity,
-availability, and boating terms require owner confirmation before publication.
-
-See [the roadmap](docs/roadmap.md) and [the Phase 0 audit](docs/phase-0-audit.md).
+Phases 0–3 are complete. Phase 4 form code is implemented locally but cannot
+open WhatsApp until the owner confirms and configures the destination. Phase 5
+release verification and deployment approval remain pending. Database storage,
+enquiry history, authentication, and an owner dashboard are future options,
+not current features.

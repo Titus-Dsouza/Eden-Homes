@@ -2,7 +2,8 @@
 
 ## 1. Overview
 
-Eden Homes will be developed as a mobile-first, responsive website using React.
+Eden Homes is a mobile-first, responsive static website using HTML, CSS, and
+browser-native JavaScript.
 
 The website must provide a smooth and consistent experience across:
 
@@ -18,12 +19,9 @@ A separate mobile application is not required. The same website will adapt to di
 
 | Technology | Purpose |
 |---|---|
-| React | User interface development |
-| Vite | Frontend development environment |
-| TypeScript | Type safety |
-| Tailwind CSS | Responsive styling |
-| React Router | Page navigation |
-| Lucide React | Icons |
+| HTML5 | Semantic page structure |
+| CSS3 | Responsive styling |
+| Vanilla JavaScript | Navigation and form behavior |
 
 ## 3. Mobile-First Design
 
@@ -59,7 +57,7 @@ Development should begin with the mobile layout and progressively adapt to large
 
 ## 4. Responsive Breakpoints
 
-Use Tailwind CSS responsive breakpoints as the initial design guideline.
+The current CSS uses breakpoints at 1100px, 800px, 600px, and 370px.
 
 | Screen | Breakpoint | Design approach |
 |---|---|---|
@@ -124,7 +122,7 @@ Requirements:
 - Clear contact/enquiry action, without implying a confirmed booking.
 - Mobile-friendly enquiry forms.
 
-### Future WhatsApp accommodation enquiry form
+### WhatsApp accommodation enquiry form
 
 Fields:
 
@@ -135,10 +133,11 @@ Fields:
 - Check-out date
 - Guest count
 
-The form must be easy to complete using a mobile keyboard. WhatsApp should
-open with a prefilled message for the visitor to manually send; the website
-must not store the request or present it as a confirmed booking. Confirm the
-destination number with the owner before implementation.
+The form uses native mobile inputs and validation. WhatsApp opens with a
+prefilled message for the visitor to manually send; the website does not store
+the request or present it as a confirmed booking. The destination is not
+configured until the owner confirms it, so a clear configuration error is
+shown.
 
 ## 8. Boating Page
 
@@ -149,7 +148,7 @@ The boating page must include:
 - Available enquiry options.
 - Clearly visible Enquire Now button.
 
-### Future WhatsApp boating enquiry form
+### WhatsApp boating enquiry form
 
 Fields:
 
@@ -161,7 +160,7 @@ Fields:
 
 Do not display unverified prices, packages, durations or availability.
 WhatsApp should open with a prefilled message for the visitor to manually send;
-the website must not store the request or present it as a confirmed booking.
+the website does not store the request or present it as a confirmed booking.
 
 ## 9. Optional future owner dashboard
 
@@ -241,8 +240,8 @@ Requirements:
 ## 13. Development Rules
 
 1. Follow a mobile-first development approach.
-2. Use reusable React components.
-3. Use Tailwind CSS responsive utilities consistently.
+2. Share CSS and JavaScript behavior across static pages.
+3. Keep responsive rules in the shared CSS files.
 4. Test layouts at multiple screen widths.
 5. Do not create separate desktop and mobile websites.
 6. Keep forms simple and mobile-friendly.
@@ -254,6 +253,6 @@ Requirements:
 Deliver one responsive Eden Homes website that works smoothly across smartphones, tablets and desktop computers.
 
 **Project:** Eden Homes
-**Frontend:** React + Vite + TypeScript + Tailwind CSS
+**Frontend:** HTML5 + CSS3 + Vanilla JavaScript
 **Design Strategy:** Mobile-first responsive design
 **Status:** Development requirements

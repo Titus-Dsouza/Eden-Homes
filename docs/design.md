@@ -1,6 +1,10 @@
 # Design
 
-## Phase 2 implementation
+## Current design implementation
+
+The current frontend is static HTML, CSS, and Vanilla JavaScript. Older React
+component references in this design record describe the previous
+implementation, not the current runtime.
 
 The homepage uses a coastal-inspired palette of forest green, warm cream, sand,
 charcoal, and a restrained terracotta accent. System sans-serif text is paired
@@ -23,8 +27,9 @@ coordinates.
   labels, and telephone links support keyboard and assistive-technology use.
 - Reduced-motion preferences disable smooth scrolling and transitions.
 - The homepage links to the individual 1 BHK, 2 BHK, and boating service pages.
-- Service-page enquiry links lead to the existing owner contact section; no
-  booking form or WhatsApp submission flow is implemented in Phase 3.
+- Service pages include browser-side Phase 4 WhatsApp enquiry forms. The
+  destination is not configured until the owner confirms a number; an enquiry
+  never confirms a booking.
 - Normal-size secondary text and interactive hover colors retain at least
   4.5:1 contrast on their light surfaces. The terracotta display accent is
   limited to large heading text, where it meets the 3:1 large-text threshold.
@@ -35,5 +40,5 @@ Supply approved photos for the homepage, each accommodation option, boating,
 and Honnavar location. Confirm exact business descriptions, whether contact
 numbers should be published, and an exact property location before adding a
 map. Prices, amenities, capacity, availability, and boating terms remain
-unpublished pending verification. The future WhatsApp form destination number
-also requires owner confirmation.
+unpublished pending verification. The WhatsApp form destination number still
+requires owner confirmation.

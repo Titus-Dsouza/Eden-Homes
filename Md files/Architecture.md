@@ -20,10 +20,8 @@ directly. No owner login or dashboard is included.
 
 | Layer | Technology | Purpose |
 |---|---|---|
-| Frontend | React + Vite | Public website |
-| Language | TypeScript | Type safety |
-| Styling | Tailwind CSS | Responsive UI |
-| Backend | Node.js + Express | API and business logic |
+| Frontend | HTML5, CSS3, Vanilla JavaScript | Static public website; no build |
+| Backend | Node.js + Express + TypeScript | Separate health-check foundation only |
 | Frontend Hosting | Vercel | Website deployment |
 | Backend Hosting | To be finalized | API deployment |
 | Enquiry communication | WhatsApp Click-to-Chat | Browser-generated message; visitor manually sends |
@@ -38,7 +36,7 @@ for the initial release.*
                        |
                        v
               FRONTEND WEBSITE
-                React + Vite
+                HTML + CSS + JavaScript
                        |
                        v
           BROWSER ENQUIRY FORM
@@ -62,7 +60,7 @@ The website does not store enquiries or report a message as sent.
 - 1 BHK accommodation page
 - 2 BHK accommodation page
 - Boating page
-- Image gallery
+- Clearly labeled CSS image placeholders (approved photography is pending)
 - Contact information
 - Responsive navigation
 
@@ -77,9 +75,10 @@ Visitors can select an accommodation option and submit:
 - Check-out date
 - Guest count
 
-The form will validate the required fields in the browser and prepare a
-prefilled WhatsApp message. No customer data is stored. The WhatsApp
-destination must be confirmed by the owner.
+The form validates required fields in the browser and prepares a prefilled
+WhatsApp message only when a configured owner-confirmed destination exists. If
+the number is missing, the form displays a configuration error. No customer
+data is stored.
 
 ### 4.3 Boating Enquiry Module
 
@@ -91,9 +90,10 @@ Visitors can submit:
 - Participant count
 - Preferred duration
 
-The form will validate the required fields in the browser and prepare a
-prefilled WhatsApp message. No customer data is stored. The WhatsApp
-destination must be confirmed by the owner.
+The form validates required fields in the browser and prepares a prefilled
+WhatsApp message only when a configured owner-confirmed destination exists. If
+the number is missing, the form displays a configuration error. No customer
+data is stored.
 
 ### 4.4 Optional future owner tools
 
@@ -109,7 +109,8 @@ Display both owner contact numbers:
 
 Both numbers should support click-to-call functionality.
 
-The WhatsApp destination number must be confirmed by the owner before implementation.
+The WhatsApp destination number is not confirmed. Frontend configuration is
+blank and forms show an error until the owner confirms and configures it.
 
 ## 5. Data and persistence
 
@@ -162,25 +163,21 @@ Owner responds directly; request remains an enquiry until confirmed
 Eden-Homes/
 │
 ├── frontend/
-│   ├── public/
-│   └── src/
-│       ├── assets/
-│       ├── components/
-│       ├── pages/
-│       ├── layouts/
-│       ├── services/
-│       ├── hooks/
-│       └── types/
+│   ├── index.html
+│   ├── accommodation/
+│   ├── boating/
+│   ├── css/
+│   └── js/
 │
 ├── backend/
-│   └── src/
-│       ├── config/
-│       ├── controllers/
-│       ├── routes/
-│       ├── middleware/
-│       ├── services/
-│       ├── validators/
-│       └── server.ts
+│   ├── src/
+│   │   ├── config/
+│   │   ├── controllers/
+│   │   ├── middleware/
+│   │   ├── routes/
+│   │   ├── app.ts
+│   │   └── server.ts
+│   └── tests/
 │
 ├── docs/
 ├── .gitignore
@@ -192,7 +189,7 @@ Eden-Homes/
 
 - Do not collect or persist form data in the initial version.
 - Do not add a database or owner authentication to the initial release.
-- Confirm the WhatsApp destination with the owner before implementation.
+- Keep the WhatsApp destination blank until the owner confirms it.
 - Validate form data in the browser before preparing the message.
 - Use HTTPS in production.
 - Tell visitors that WhatsApp opens with a draft and they must manually send it.

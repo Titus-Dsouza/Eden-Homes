@@ -2,13 +2,14 @@
 
 ## Current repository
 
-`frontend/` and `backend/` are independent Node.js applications with their own
-package manifests, lockfiles, TypeScript configuration, lint commands, and
-environment examples. The frontend is a Vite-built React single-page application
-with React Router, Tailwind CSS, a shared page container, and a public API base
-URL parser. The backend is an Express service with Zod-validated configuration,
-a health endpoint, origin-restricted CORS, and centralized 404/error handling.
-The apps are not connected to one another yet.
+`frontend/` is a static website made of HTML pages, CSS, and browser-native
+JavaScript. It has no package manifest, framework, build step, or API
+dependency. Each route is a physical HTML file so nested pages work on direct
+requests. Shared CSS and JavaScript live in `frontend/css/` and `frontend/js/`.
+
+`backend/` remains an independent Node.js/Express/TypeScript health-check
+service with Zod-validated configuration, origin-restricted CORS, and
+centralized 404/error handling. The public website does not call it.
 
 The initial release does not use a database. `database/` is reserved for
 optional future database planning; it contains no active schema or migrations.
@@ -17,8 +18,8 @@ credentials are needed.
 
 ## Boundaries
 
-- Frontend code may contain public configuration only. Vite-exposed variables
-  are embedded in client assets and must never contain secrets.
+- The frontend contains public, non-secret configuration only; values in
+  `frontend/js/config.js` are visible to every visitor.
 - Backend-only credentials, if introduced later, belong in the backend host's
   environment configuration and must never be copied into frontend variables.
 - No customer enquiries are persisted by the current application.
@@ -29,16 +30,18 @@ credentials are needed.
 - `FRONTEND_URL` is the backend's permitted browser origin. Set it to the exact
   deployed frontend origin in production; production configuration fails if it
   is omitted.
-- Frontend and backend lint/type checks use Oxlint and TypeScript. Their
-  dependencies remain independent.
+- Frontend checks use Node.js built-in tests; the backend retains independent
+  Oxlint and TypeScript checks.
 
-## Initial enquiry approach (planned, not implemented)
+## WhatsApp enquiry flow
 
-Visitors will browse service information and complete an accommodation or
-boating form. The browser will prepare a prefilled WhatsApp message for the
-visitor to review and manually send to the owner. The WhatsApp destination
-number must be confirmed by the owner before implementation. The site will not
-store the enquiry or claim the message was sent; enquiries are not bookings.
+Visitors complete an accommodation or boating form. The browser validates the
+fields and prepares a prefilled WhatsApp message for the visitor to review and
+manually send to the owner. The destination is currently unconfirmed and is
+blank in `frontend/js/config.js`; the form displays a configuration error until
+the owner confirms and configures a number. It is never inferred from the
+telephone contact numbers. The site does not store enquiries or claim a message
+was sent; an enquiry is not a booking.
 
 Accommodation form fields: full name, phone number, selected property (exactly
 `1 BHK` or `2 BHK`), check-in, check-out, and guest count. Boating form fields:
@@ -56,9 +59,8 @@ and are logged server-side. CORS emits an allow-origin header only for the
 configured frontend origin (or requests without an `Origin` header).
 
 No product routes, database integration, authentication, or owner operations
-are present. The planned WhatsApp form flow is browser-only and requires no
-backend product API. Add backend features only after a separately approved
-requirement.
+are present. The WhatsApp form flow is browser-only and requires no backend
+product API. Add backend features only after a separately approved requirement.
 
 ## Verification status
 

@@ -3,56 +3,69 @@
 ## Purpose
 
 Provide a responsive web presence for Eden Homes in Honnavar, Karnataka, where
-visitors can learn about accommodation and boating and contact the owner with
-enquiries.
+visitors can explore 1 BHK and 2 BHK accommodation, learn about boating, and
+contact the owner. Property and boating details must remain limited to verified
+information. Enquiries are not confirmed bookings.
 
-## Requirements recorded in the source roadmap
+## Included features
 
-- Accommodation options are described as 1 BHK and 2 BHK.
-- Boating is listed as a service.
-- Enquiries should be clearly distinguished from confirmed bookings.
-- Availability and terms require direct owner confirmation.
-- Planned enquiry flows should collect only the information needed to respond.
+- Homepage with shared navigation, accommodation previews, boating section,
+  contact details, image placeholders, and footer.
+- Directly loadable 1 BHK, 2 BHK, and boating pages.
+- Responsive layouts, keyboard-operable mobile navigation, accessible labels,
+  focus behavior, and page metadata.
+- Click-to-call links for `9448327432` and `8660345883`.
+- Accommodation and boating enquiry forms that validate in the browser and
+  prepare a prefilled WhatsApp message for visitor review and manual sending.
 
-These are requirements carried forward from repository documentation, not
-evidence that property details or boating terms have been verified with the
-business owner.
+## Enquiry fields
 
-## Current enquiry decision
+**Accommodation:** full name, phone number, property (`1 BHK` or `2 BHK`),
+check-in date, check-out date, and number of guests. Check-out must be later
+than check-in.
 
-The initial release will not use Supabase or any other database. Visitors will
-eventually submit accommodation or boating details through website forms; the
-browser will prepare a WhatsApp Click-to-Chat message and the visitor must
-manually press Send. The WhatsApp destination number must be confirmed by the
-owner before implementation. The site must not claim a message was sent or a
-booking confirmed, and it will not store enquiries.
+**Boating:** full name, phone number, preferred date, number of participants,
+and preferred duration. No unsupported duration or participant options are
+suggested.
 
-Accommodation fields: full name, phone number, selected property (exactly
-`1 BHK` or `2 BHK`), check-in, check-out, guest count.
+## Enquiry limits and privacy
 
-Boating fields: full name, phone number, preferred date, participant count,
-preferred duration.
+- WhatsApp destination must be explicitly confirmed by the owner. It is
+  configured in `frontend/js/config.js`; the blank default makes the form show
+  a clear configuration error.
+- Never infer the WhatsApp destination from the two telephone numbers.
+- Form data stays in browser memory only for the current interaction. The site
+  does not send it to a backend, database, local storage, session storage, or
+  cookies.
+- Visitors must review the prepared message and press Send in WhatsApp.
+- The site does not claim delivery, booking confirmation, availability, pricing,
+  or arrangements. The owner confirms those directly.
 
-Database-backed enquiry history and an owner dashboard are possible future
-optional upgrades, not initial-release requirements.
+## Current implementation and stack
 
-## Excluded from the initial scope
+The public website is HTML5, CSS3, and browser-native JavaScript with no
+frontend build step. Static pages live under `frontend/`; Vercel serves the
+homepage and nested HTML routes directly. The separate Express/TypeScript
+backend remains a health-check foundation only and is not part of enquiry
+handling.
 
-The AI concierge mentioned in the source roadmap is explicitly excluded from the
-initial project scope. Do not implement or advertise it without a separate
-owner-approved change.
+## Not included
 
-## Not yet confirmed
+No database, enquiry history, API submission, owner authentication, owner
+dashboard, payments, AI concierge, or automatic booking/availability handling
+is implemented. Database and owner tools are possible future upgrades only
+after a separately approved scope and privacy review.
 
-Pricing, amenities, guest capacity, property rules, boating packages and
-durations, operating times, availability, and launch terms require owner
-confirmation. The existing roadmap contains contact numbers; confirm their
-accuracy and consent before using them on a public site.
+## Owner decisions still required
 
-## Implementation status
+- WhatsApp destination number.
+- Approved photographs and verified service descriptions.
+- Whether contact numbers may be published.
+- Exact property location if a map is later requested.
+- Pricing, amenities, capacities, availability, and boating terms.
 
-The homepage and service pages are present in the Phase 2/Phase 3 worktree. The
-backend health endpoint remains infrastructure only. Enquiry forms, WhatsApp
-message generation, persistence, authentication, and owner management are not
-implemented. Database persistence, authentication, and owner management are
-not part of the initial release.
+## Historical architecture
+
+The earlier React/Vite/TypeScript frontend was replaced by the static
+implementation on the `migration/vanilla-html-css-js` branch. References to
+that stack in older phase records describe history, not the current runtime.

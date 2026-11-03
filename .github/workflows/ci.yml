@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   frontend:
-    name: Frontend checks
+    name: Static website checks
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -21,12 +21,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-          cache-dependency-path: frontend/package-lock.json
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run typecheck
-      - run: npm run build
+      - run: node --check js/main.js
+      - run: node --check js/navigation.js
+      - run: node --check js/accommodation.js
+      - run: node --check js/boating.js
+      - run: node --check js/whatsapp.js
+      - run: node --test tests/*.test.mjs
 
   backend:
     name: Backend checks

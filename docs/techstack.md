@@ -1,49 +1,48 @@
 # Technology stack
 
-## Approved foundation
+## Current frontend
 
 | Area | Technology | Status |
 |---|---|---|
-| Frontend | React, Vite, TypeScript | Foundation implemented |
-| Styling | Tailwind CSS | Configured with the Vite plugin |
-| Routing | React Router DOM | Root and not-found routes implemented |
-| Icons | Lucide React | Used by the homepage and service pages |
-| Frontend lint/type checks | Oxlint and TypeScript | Configured |
-| Backend | Node.js, Express, TypeScript | Health service and middleware foundation |
-| Validation | Zod | Validates backend environment configuration |
-| Backend lint/type checks | Oxlint and TypeScript | Configured |
-| Enquiry delivery | Browser-generated WhatsApp Click-to-Chat message | Planned; destination number pending owner confirmation |
-| Database | None for the initial release | Enquiries are not persisted; possible future optional upgrade |
-| Frontend hosting | Vercel | Live deployment reported and URL verified; unchanged by this phase |
-| Backend hosting | Separate Node.js host | Provider not selected |
+| Documents | HTML5 | Four directly served page files |
+| Styling | CSS3 | Shared brand styles, responsive rules, and form styles |
+| Interaction | Browser-native JavaScript (ES6+) | Accessible mobile menu and browser-only WhatsApp form handling |
+| Build | None | No compilation or frontend package installation |
+| Frontend tests | Node.js built-in test runner | Static route, asset, phone, and WhatsApp URL checks |
+| Hosting | Vercel static hosting | No framework build or SPA rewrite |
 
-Frontend and backend dependencies are managed independently. Supabase, any
-other database, authentication, schema, and migration tooling are not required
-for the initial release. Enquiries will be prepared in the browser for the
-customer to manually send through WhatsApp; no API or database submission is
-planned.
+The former React, React DOM, TypeScript, Vite, Tailwind, React Router, Lucide,
+and associated frontend tooling are migration history only. They are not
+required by the current frontend.
 
-## Runtime
+## Separate backend foundation
 
-Node.js 22 is used in CI and is the documented runtime. Local and deployment
-environments should use Node.js 22.
+The backend remains an independent Node.js/Express/TypeScript service with
+Zod-based environment validation and a `GET /health` endpoint. It is not called
+by the static website and receives no enquiry data. Backend package files,
+tests, and checks remain in place.
 
-## Deployment
+## Enquiry flow
 
-The SPA rewrite is configured in `frontend/vercel.json`; target project settings
-are `frontend` as the root, Vite framework, `npm install`, `npm run build`, and
-`dist`. The backend is prepared for separate Node.js hosting; no provider or
-database has been selected.
+The browser validates accommodation or boating form values and prepares a
+WhatsApp Click-to-Chat URL. Visitors review the draft and manually press Send.
+The form does not persist the details or report a message as delivered. The
+destination number is not owner-confirmed; `frontend/js/config.js` therefore
+remains blank and the forms show a configuration error. Never use either
+telephone number as a substitute.
 
-## Verification
+No database, authentication, enquiry history, owner dashboard, or AI
+concierge is part of the current release. Database and owner tools remain
+optional future work requiring separate approval.
 
-CI checks are configured in `.github/workflows/ci.yml`. Phase 1 local check
-results are recorded in [`roadmap.md`](roadmap.md). No enquiry form, WhatsApp
-message generation, enquiry persistence, authentication, owner dashboard, or AI
-concierge is implemented.
+## Local checks
 
-The configured linter is Oxlint, not ESLint. An ESLint TypeScript plugin install
-was rejected because the frontend currently uses TypeScript 7 while
-`typescript-eslint` declares a peer range below TypeScript 6.1. No forced
-dependency install or TypeScript downgrade was made; decide whether to align
-the TypeScript version before adopting ESLint specifically.
+Use Node.js 22 or later to run:
+
+```sh
+cd frontend
+node --test tests/*.test.mjs
+```
+
+The separate backend retains its own npm scripts, TypeScript configuration,
+and CI checks.

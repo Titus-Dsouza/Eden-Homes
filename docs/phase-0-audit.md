@@ -1,5 +1,11 @@
 # Phase 0 repository audit
 
+> Historical record from the repository foundation phase. The subsequent
+> Phase 2/3 site implementation and vanilla frontend migration supersede
+> statements below about the frontend being a placeholder, React/Vite
+> deployment, and prior local repository state. Current status is recorded in
+> [`roadmap.md`](roadmap.md).
+
 ## Baseline
 
 - The supplied local directory (`EDEN HOMES 2`) was not a Git repository and

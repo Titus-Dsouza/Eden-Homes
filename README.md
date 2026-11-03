@@ -1,134 +1,87 @@
 # Eden Homes
 
-Eden Homes is a homestay and boating enquiry website for Honnavar, Karnataka,
-India. Enquiries are not confirmed bookings: availability and terms must be
-confirmed by the owner. The current Phase 2 worktree contains a responsive
-homepage and dedicated 1 BHK, 2 BHK, and boating service pages. Website enquiry
-forms and WhatsApp message preparation are planned; no enquiry has been sent
-or booking confirmed by this site.
+Eden Homes is a static website for exploring homestay accommodation and boating enquiries in Honnavar, Karnataka. It presents 1 BHK and 2 BHK accommodation, boating information, contact details, and WhatsApp-only enquiry forms. Enquiries are not confirmed bookings; the owner confirms availability, pricing, and arrangements.
 
-## Project status
+## Current status
 
-- **Implemented:** Responsive homepage, section navigation, accommodation and
-  boating previews, dedicated service pages, contact links, labeled image
-  placeholders, Express health endpoint, and Vercel SPA routing.
-- **Phase 3:** Dedicated service pages are implemented and verified locally on
-  `phase-3/service-pages`; see the [roadmap](docs/roadmap.md) for details.
-- **Tested:** Frontend checks and browser viewport smoke tests are recorded in
-  [Phase 2 of the roadmap](docs/roadmap.md); Phase 1 checks are in the
-  [Phase 0 verification record](docs/phase-0-audit.md).
-- **Planned:** Owner-approved photography and WhatsApp-only accommodation and
-  boating enquiry forms. The WhatsApp destination number must be confirmed by
-  the owner before that functionality is implemented.
-- **Pending owner confirmation:** Pricing, facilities, capacities, availability,
-  boating details, approved photography, exact property location, and public
-  use of contact information.
-- **Not in the initial release:** Supabase or another database, enquiry
-  storage/history, owner authentication, and an owner dashboard. These remain
-  possible future upgrades requiring separate approval.
-- **Excluded from the initial scope:** An AI concierge.
+- **Implemented:** Responsive homepage, direct 1 BHK, 2 BHK, and boating pages, keyboard-operable mobile navigation, phone links, image placeholders, and browser-side WhatsApp enquiry forms.
+- **WhatsApp destination:** Not confirmed by the owner. The forms display a configuration error until `frontend/js/config.js` contains an owner-confirmed destination number. The site does not use either contact number as the WhatsApp destination.
+- **Not implemented:** Database, enquiry storage/history, backend enquiry API, authentication, owner dashboard, and AI concierge.
+- **Owner input pending:** WhatsApp destination, approved photography, verified service details, and contact publication consent.
 
 ## Technology
 
-- Frontend: React, Vite, TypeScript, Tailwind CSS, React Router DOM, Lucide React
-- Backend: Node.js, Express, TypeScript, Zod
-- Enquiry delivery: Browser-generated WhatsApp Click-to-Chat message (planned;
-  destination number pending owner confirmation)
-- Database: None for the initial release; no enquiry persistence
-- Frontend hosting: Vercel
-- Backend hosting: separate Node.js provider; selection pending
+- Frontend: HTML5, CSS3, and browser-native JavaScript (ES6+); no frontend build or compilation step.
+- Backend: Separate Node.js/Express/TypeScript health-check foundation only; it is not required by the website.
+- Database: None in the initial release.
+- Deployment: Static Vercel hosting.
 
-## Repository structure
+## Project structure
 
 ```text
-frontend/       Independent Vite single-page application
-backend/        Independent Express service and health endpoint
-database/       Reserved for optional future database planning; no migrations
-docs/           Architecture, deployment, product, design, and roadmap docs
-Md files/       Source Markdown and current phase/decision records
-.github/        Frontend and backend CI workflow
+frontend/
+├── index.html
+├── accommodation/
+│   ├── 1-bhk.html
+│   └── 2-bhk.html
+├── boating/
+│   └── index.html
+├── css/
+│   ├── style.css
+│   ├── responsive.css
+│   └── forms.css
+├── js/
+│   ├── config.js
+│   ├── main.js
+│   ├── navigation.js
+│   ├── accommodation.js
+│   ├── boating.js
+│   └── whatsapp.js
+└── tests/
+backend/        Independent health-check service
+database/       Documentation for deferred database options
+docs/           Product, architecture, deployment, and phase records
+Md files/       Project decisions and source documentation
+.github/        Static-site and backend CI checks
 ```
 
-The frontend and backend have separate manifests, lockfiles, TypeScript
-configuration, and environment examples. They do not currently call one another.
+## Local development
 
-## Requirements
+The website can be opened directly as `frontend/index.html`. For local URL paths that match deployment, run a static file server from the repository root:
 
-Use Node.js 22 and npm. Run each application from its own directory.
+```sh
+python3 -m http.server 8000 --directory frontend
+```
 
-### Frontend
+Open <http://localhost:8000/>. The service pages are directly available at `/accommodation/1-bhk.html`, `/accommodation/2-bhk.html`, and `/boating/`. No frontend package installation or build is needed.
+
+Run the frontend checks with Node.js 22 or later:
 
 ```sh
 cd frontend
-npm ci
-cp .env.example .env
-npm run dev
+node --test tests/*.test.mjs
 ```
 
-Available checks and build:
+The separate backend remains an optional health-check service; see its own `package.json` for its Node.js commands. It does not receive or store website enquiries.
 
-```sh
-npm run lint
-npm run typecheck
-npm run build
-```
+## WhatsApp enquiry behavior
 
-`VITE_API_BASE_URL` is optional and public in browser assets. No product API
-calls are implemented.
+The forms collect the documented accommodation or boating fields in the browser, validate them, and prepare a Click-to-Chat URL. No details are sent to a server, written to local storage, session storage, or cookies, or automatically sent through WhatsApp. The visitor reviews the message and manually presses **Send** in WhatsApp.
 
-### Backend
+Before enabling messages, the owner must provide the WhatsApp destination in `frontend/js/config.js` as international digits only (country code and number, no `+` or spaces). Until then the form displays a clear configuration error. The displayed call numbers remain `9448327432` and `8660345883`; neither is assumed to be the WhatsApp destination.
 
-```sh
-cd backend
-npm ci
-cp .env.example .env
-npm run dev
-```
+## Vercel deployment
 
-The backend currently exposes only `GET /health`. Run:
-
-```sh
-npm run lint
-npm run typecheck
-npm test
-npm run build
-```
-
-`npm start` starts the compiled server. `FRONTEND_URL` configures the allowed
-browser origin for CORS. Production must set it to the frontend's exact origin.
-There is no database connection, customer enquiry API, form submission, or
-owner dashboard.
-
-## Environment and secrets
-
-Copy the relevant `.env.example` to `.env` within the corresponding app.
-Frontend variables must use the `VITE_` prefix and must not contain secrets.
-Backend variables are server-side only. `.env` files are ignored by Git; the
-examples contain names and safe local defaults only.
-
-## Frontend deployment
-
-The existing live frontend is available at <https://eden-homes-chi.vercel.app/>.
-Current Phase 2/3 work is local and has not been deployed.
-The Vercel project should use repository `Titus-Dsouza/Eden-Homes` with:
+Create a static Vercel project with:
 
 - Root Directory: `frontend`
-- Framework Preset: Vite
-- Install Command: `npm install`
-- Build Command: `npm run build`
-- Output Directory: `dist`
+- Framework Preset: `Other`
+- Install Command: none
+- Build Command: none
+- Output Directory: project root (`.`) / leave the override empty
 
-`frontend/vercel.json` sends unmatched SPA routes to `index.html`. No deployment
-was performed as part of this phase.
+Do not configure an SPA rewrite. Vercel serves `index.html` and the nested HTML pages as static files. No deployment was performed as part of this migration.
 
-## Backend deployment
+## Project records
 
-Deploy `backend/` separately to a Node.js host; the provider is not selected.
-Use Node.js 22, `npm ci`, `npm run build`, and `npm start`. Configure `PORT`,
-`NODE_ENV`, and the production `FRONTEND_URL` in the host environment. Supabase
-credentials are not required; no database integration is planned for the
-initial release.
-
-More detail: [architecture](docs/architecture.md),
-[deployment](docs/deployment.md), [technology stack](docs/techstack.md), and
-[roadmap](docs/roadmap.md).
+The source [roadmap](docs/roadmap.md) tracks completed phases and pending owner decisions. The original React/Vite implementation is recorded as migration history; it is no longer used by the frontend.

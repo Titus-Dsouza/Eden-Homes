@@ -2,9 +2,9 @@
 
 ## Requirements
 
-The roadmap calls for mobile, tablet, and desktop support. Future enquiry forms
-must be usable with touch input, visible validation, and no horizontal overflow.
-Telephone and messaging links must be operable on mobile.
+The site supports mobile, tablet, and desktop layouts. Enquiry forms use
+touch-friendly fields and native validation; telephone and WhatsApp links are
+browser-operable. No enquiry is represented as a booking confirmation.
 
 ## Phase 2 status
 
@@ -27,6 +27,7 @@ Phase 3 direct routes were checked in Chromium at 320, 375, 600, 768, 1024, and
 navigation, service cross-links, phone links, mobile-menu open/Escape behavior,
 skip targets, reduced motion, route-specific metadata, and console errors were
 checked. This is a focused smoke test, not exhaustive cross-browser or
-assistive-technology certification. Future WhatsApp enquiry forms must be
-tested for touch usability and clearly state that visitors manually send the
-prefilled message and that a request is not a confirmed booking.
+assistive-technology certification. Phase 4 forms now prepare a WhatsApp draft
+for manual sending, state that the request is not a confirmed booking, and do
+not persist the submitted information. Browser-level viewport testing of the
+new static migration remains a release-readiness check.

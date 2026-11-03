@@ -3,9 +3,9 @@
 # Optional future database planning
 
 The initial Eden Homes release does not use Supabase or another database.
-Customer enquiry details will not be stored by the website; the planned
+Customer enquiry details are not stored by the website; the implemented
 enquiry path is a browser-generated WhatsApp message that the visitor manually
-sends after the owner confirms the destination number.
+sends after the owner confirms and configures the destination number.
 
 Database storage, enquiry history, and an owner dashboard are optional future
 upgrades requiring separate approval. No schema, migrations, database

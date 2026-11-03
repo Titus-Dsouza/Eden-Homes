@@ -7,11 +7,13 @@ The website must not store customer enquiries. Do not add database dependencies,
 tables, or migrations, and do not build owner authentication or an owner
 dashboard.
 
-Customers will eventually enter their details through the website enquiry
-forms. The browser will prepare a prefilled WhatsApp message; WhatsApp opens
-and the customer must manually press **Send**. The website must not claim the
-message was delivered. Submitting a website form or opening WhatsApp does not
-confirm a booking; the owner confirms availability, pricing, and arrangements.
+Customers enter their details through the current website enquiry forms. The
+browser prepares a prefilled WhatsApp message only after the owner-confirmed
+destination is configured; WhatsApp opens and the customer must manually press
+**Send**. The destination is currently missing, so the forms show a
+configuration error. The website does not claim delivery. Submitting a form
+or opening WhatsApp does not confirm a booking; the owner confirms
+availability, pricing, and arrangements.
 
 Accommodation enquiry fields:
 
