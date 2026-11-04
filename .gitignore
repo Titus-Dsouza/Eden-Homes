@@ -40,3 +40,7 @@ Thumbs.db
 .vscode/
 *.swp
 *.swo
+
+# Local workspace subfolder
+Eden-Homes/
+

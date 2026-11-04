@@ -12,7 +12,7 @@ Eden Homes is a static website for exploring homestay accommodation and boating 
 ## Technology
 
 - Frontend: HTML5, CSS3, and browser-native JavaScript (ES6+); no frontend build or compilation step.
-- Backend: Separate Node.js/Express/TypeScript health-check foundation only; it is not required by the website.
+- Backend: None; the website is completely static with browser-native WhatsApp Click-to-Chat enquiry forms.
 - Database: None in the initial release.
 - Deployment: Static Vercel hosting.
 
@@ -38,11 +38,10 @@ frontend/
 │   ├── boating.js
 │   └── whatsapp.js
 └── tests/
-backend/        Independent health-check service
 database/       Documentation for deferred database options
 docs/           Product, architecture, deployment, and phase records
 Md files/       Project decisions and source documentation
-.github/        Static-site and backend CI checks
+.github/        Static-site CI checks
 ```
 
 ## Local development
@@ -62,7 +61,6 @@ cd frontend
 node --test tests/*.test.mjs
 ```
 
-The separate backend remains an optional health-check service; see its own `package.json` for its Node.js commands. It does not receive or store website enquiries.
 
 ## WhatsApp enquiry behavior
 
