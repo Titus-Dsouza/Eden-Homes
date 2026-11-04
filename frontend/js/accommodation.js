@@ -8,6 +8,9 @@
   }
 
   function initializeAccommodationForm(form) {
+    if (form.dataset && form.dataset.formsInitialized) {
+      return;
+    }
     form.querySelector('[type="submit"]').disabled = false;
     const checkIn = form.elements.checkIn;
     const checkOut = form.elements.checkOut;

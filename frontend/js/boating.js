@@ -8,6 +8,9 @@
   }
 
   function initializeBoatingForm(form) {
+    if (form.dataset.formsInitialized) {
+      return;
+    }
     form.querySelector('[type="submit"]').disabled = false;
     const date = form.elements.date;
     const configurationError = form.querySelector(
