@@ -2449,3 +2449,267 @@ button {
     border-width: 3px;
   }
 }
+
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+  --bg-main: #f8fafc;
+  --bg-surface: rgba(255, 255, 255, 0.75);
+  --bg-glass-card: rgba(255, 255, 255, 0.65);
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --accent-primary: #0284c7;
+  --accent-hover: #0369a1;
+  --border-glass: rgba(226, 232, 240, 0.8);
+  --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  --color-forest: var(--accent-primary);
+  --color-forest-deep: var(--text-primary);
+  --color-cream: var(--bg-main);
+  --color-paper: var(--bg-surface);
+  --color-sand: var(--border-glass);
+  --color-ink: var(--text-primary);
+  --color-muted: var(--text-muted);
+  --color-accent: var(--accent-primary);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg-main: #0b1120;
+  --bg-surface: rgba(15, 23, 42, 0.75);
+  --bg-glass-card: rgba(30, 41, 59, 0.65);
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --accent-primary: #38bdf8;
+  --accent-hover: #7dd3fc;
+  --border-glass: rgba(255, 255, 255, 0.12);
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --color-forest: var(--accent-primary);
+  --color-forest-deep: var(--text-primary);
+  --color-cream: var(--bg-main);
+  --color-paper: var(--bg-surface);
+  --color-sand: var(--border-glass);
+  --color-ink: var(--text-primary);
+  --color-muted: var(--text-muted);
+  --color-accent: var(--accent-primary);
+}
+
+body {
+  min-width: 320px;
+  background: var(--bg-main);
+  color: var(--text-primary);
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.glass-card,
+.site-header,
+.form-container,
+.card,
+.approach-card,
+.accommodation-card,
+.enquiry-form,
+.service-information__inner {
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+  background: var(--bg-glass-card);
+  box-shadow: var(--shadow-glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.glass-card:hover,
+.accommodation-card:hover,
+.approach-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.25);
+}
+
+.site-header {
+  border-bottom-color: var(--border-glass);
+  background: var(--bg-surface);
+}
+
+.brand,
+.desktop-nav,
+.approach-card h3,
+.accommodation-card h3,
+.service-hero__copy h1,
+.service-information h2,
+.service-directory h2 {
+  color: var(--text-primary);
+}
+
+.brand__descriptor,
+.service-hero__description,
+.service-hero__note,
+.hero-section__description,
+.section-heading__description,
+.accommodation-card__description,
+.approach-card p,
+.service-information__inner > p {
+  color: var(--text-secondary);
+}
+
+.intro-section,
+.hero-section,
+.service-hero,
+.approach-section,
+.accommodation-section,
+.contact-section,
+.service-information,
+.service-directory,
+.enquiry-section {
+  background: var(--bg-main);
+  color: var(--text-primary);
+}
+
+.service-hero {
+  background:
+    radial-gradient(ellipse at 2% 5%, var(--border-glass), transparent 34%),
+    var(--bg-main);
+}
+
+.approach-grid {
+  gap: 20px;
+  border: 0;
+  background: transparent;
+}
+
+.approach-card {
+  min-height: 250px;
+  padding: 32px;
+}
+
+.approach-card + .approach-card {
+  border-left: 1px solid var(--border-glass);
+}
+
+.approach-card__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--bg-surface);
+  font-size: 24px;
+}
+
+.approach-card__number {
+  display: none;
+}
+
+.accommodation-grid {
+  gap: 24px;
+  background: transparent;
+}
+
+.accommodation-card {
+  overflow: hidden;
+}
+
+.accommodation-card__image {
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.enquiry-form {
+  border-color: var(--border-glass);
+  background: var(--bg-glass-card);
+}
+
+.form-help,
+.form-disclaimer,
+.accommodation-section__note,
+.section-index {
+  color: var(--text-muted);
+}
+
+.service-directory__links,
+.service-directory__link {
+  border-color: var(--border-glass);
+}
+
+.service-directory__link {
+  color: var(--accent-primary);
+}
+
+.boating-section,
+.site-footer {
+  background: #0b1120;
+}
+
+.theme-toggle {
+  display: inline-grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid var(--border-glass);
+  border-radius: 50%;
+  background: var(--bg-glass-card);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 19px;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.theme-toggle:hover {
+  transform: rotate(12deg);
+  background: var(--bg-surface);
+}
+
+.featured-accommodation {
+  padding: clamp(24px, 4vw, 56px);
+}
+
+.btn-view-details-large {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 36px;
+  border: 1px solid var(--border-glass);
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-hover));
+  box-shadow: 0 4px 20px rgba(56, 189, 248, 0.35);
+  color: #0b1120;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.btn-view-details-large:hover {
+  transform: scale(1.04);
+  box-shadow: 0 6px 28px rgba(56, 189, 248, 0.5);
+}
+
+@media (max-width: 800px) {
+  .approach-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .approach-card + .approach-card {
+    border-left: 0;
+  }
+
+  .approach-card {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .featured-accommodation {
+    padding: 20px;
+  }
+
+  .btn-view-details-large {
+    width: 100%;
+    padding-inline: 20px;
+  }
+}

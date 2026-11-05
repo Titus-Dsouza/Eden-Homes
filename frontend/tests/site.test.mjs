@@ -74,8 +74,26 @@ test('pages reference only static assets and include the shared responsive navig
     assert.match(html, /name="description"/)
     assert.match(html, /class="mobile-menu-toggle"[^>]+aria-expanded="false"/)
     assert.match(html, /id="mobile-navigation"[^>]+hidden/)
+    const themeScript = relativePage === 'index.html' ? 'js/theme.js' : '../js/theme.js'
+    assert.match(html, new RegExp(`<script defer src="${themeScript}"><\\/script>`))
+    assert.equal([...html.matchAll(/\bid="theme-toggle"/g)].length, 1)
     assert.doesNotMatch(html, /react-dom|react-router|\/src\/main\.tsx|type="module"/i)
   }
+})
+
+test('homepage approach cards and featured 2 BHK CTA include the requested content', () => {
+  const homepage = readFileSync(path.join(root, 'index.html'), 'utf8')
+  const twoBhk = readFileSync(path.join(root, 'accommodation/2-bhk.html'), 'utf8')
+
+  assert.match(homepage, /🎯<\/span><h3>Clear choices<\/h3>/)
+  assert.match(homepage, /1 BHK, 2 BHK, and boating options with transparent details and no hidden fees/)
+  assert.match(homepage, /WhatsApp at \+91 9448327432/)
+  assert.match(homepage, /💬<\/span><h3>A conversation with the owner<\/h3>/)
+  assert.match(homepage, /🌴<\/span><h3>Authentic Local Experience<\/h3>/)
+  assert.match(homepage, /Honnavar river boating and regional guidance/)
+  assert.match(twoBhk, /class="site-shell service-hero__grid glass-card featured-accommodation"/)
+  assert.match(twoBhk, /class="btn-view-details-large" href="#enquiry-form"/)
+  assert.match(twoBhk, /Owner-approved photographs pending/)
 })
 
 test('supplied photos appear only in their approved sections and 2 BHK stays empty', () => {
@@ -358,7 +376,11 @@ test('frontend contains no stored enquiry handling or external image/font depend
   }
 
   const source = files.map((file) => readFileSync(file, 'utf8')).join('\n')
-  assert.doesNotMatch(source, /\b(localStorage|sessionStorage|document\.cookie)\b/)
+  const enquirySource = files
+    .filter((file) => path.basename(file) !== 'theme.js')
+    .map((file) => readFileSync(file, 'utf8'))
+    .join('\n')
+  assert.doesNotMatch(enquirySource, /\b(localStorage|sessionStorage|document\.cookie)\b/)
   assert.doesNotMatch(source, /fetch\s*\(|XMLHttpRequest|\/api\//)
   assert.doesNotMatch(source, /fonts\.googleapis\.com|images\.unsplash\.com/)
 })
