@@ -96,6 +96,20 @@ test('homepage approach cards and featured 2 BHK CTA include the requested conte
   assert.match(twoBhk, /Owner-approved photographs pending/)
 })
 
+test('dark mode panels and global text retain the requested contrast and scale', () => {
+  const stylesheet = readFileSync(path.join(root, 'css/style.css'), 'utf8')
+  const formsStylesheet = readFileSync(path.join(root, 'css/forms.css'), 'utf8')
+
+  assert.match(stylesheet, /:root body\s*\{[^}]*font-size:\s*1\.125rem;[^}]*line-height:\s*1\.65;/)
+  assert.match(stylesheet, /:root body h1,[\s\S]*?font-size:\s*2\.5rem/)
+  assert.match(stylesheet, /:root body h2,[\s\S]*?font-size:\s*2rem/)
+  assert.match(stylesheet, /:root body h3,[\s\S]*?font-size:\s*1\.35rem/)
+  assert.match(stylesheet, /:root body p\s*\{[^}]*font-size:\s*1\.1rem !important;/)
+  assert.match(stylesheet, /\[data-theme="dark"\] \.glass-card,[\s\S]*?background-color:\s*rgba\(30,\s*41,\s*59,\s*0\.85\) !important/)
+  assert.match(stylesheet, /\[data-theme="dark"\] p,[\s\S]*?\[data-theme="dark"\] label/)
+  assert.match(formsStylesheet, /background:\s*var\(--bg-glass-card\);[\s\S]*?color:\s*var\(--text-primary\);[\s\S]*?font-size:\s*1\.1rem;/)
+})
+
 test('supplied photos appear only in their approved sections and 2 BHK stays empty', () => {
   const stylesheet = readFileSync(path.join(root, 'css/style.css'), 'utf8')
   assert.match(stylesheet, /\.stay-photo-gallery__item img\s*\{[\s\S]*?height:\s*auto;/)

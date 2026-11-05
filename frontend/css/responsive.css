@@ -164,7 +164,7 @@
 h1,
 .hero-section h1,
 .service-hero__copy h1 {
-  font-size: 2.75rem;
+  font-size: 2.5rem;
   font-weight: 700;
 }
 
@@ -172,11 +172,11 @@ h2,
 .section-heading h2,
 .service-information h2,
 .service-directory h2 {
-  font-size: 2.1rem;
+  font-size: 2rem;
 }
 
 h3,
 .accommodation-card h3,
 .approach-card h3 {
-  font-size: 1.45rem;
+  font-size: 1.35rem;
 }

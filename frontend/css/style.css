@@ -223,7 +223,7 @@ button {
 }
 
 .button--light:hover {
-  background: white;
+  background: var(--bg-surface);
 }
 
 .mobile-menu-toggle,
@@ -2712,4 +2712,83 @@ body {
     width: 100%;
     padding-inline: 20px;
   }
+}
+
+:root body {
+  font-size: 1.125rem;
+  line-height: 1.65;
+}
+
+:root body h1,
+:root body .hero-section h1,
+:root body .service-hero__copy h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+:root body h2,
+:root body .section-heading h2,
+:root body .service-information h2,
+:root body .service-directory h2 {
+  font-size: 2rem;
+}
+
+:root body h3,
+:root body .accommodation-card h3,
+:root body .approach-card h3 {
+  font-size: 1.35rem;
+}
+
+:root body p {
+  font-size: 1.1rem !important;
+}
+
+:root body .form-field input,
+:root body .form-field select,
+:root body .form-field textarea,
+:root body input,
+:root body select,
+:root body textarea {
+  font-size: 1.1rem;
+}
+
+[data-theme="dark"] .card,
+[data-theme="dark"] .glass-card,
+[data-theme="dark"] .form-container,
+[data-theme="dark"] .modal,
+[data-theme="dark"] .approach-card,
+[data-theme="dark"] .accommodation-card,
+[data-theme="dark"] .enquiry-form,
+[data-theme="dark"] .service-information__inner {
+  border-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(30, 41, 59, 0.85) !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .card *,
+[data-theme="dark"] .glass-card *,
+[data-theme="dark"] .form-container *,
+[data-theme="dark"] .modal *,
+[data-theme="dark"] .approach-card *,
+[data-theme="dark"] .accommodation-card *,
+[data-theme="dark"] .enquiry-form *,
+[data-theme="dark"] .service-information__inner * {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] p,
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] span,
+[data-theme="dark"] label {
+  color: #f8fafc;
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea {
+  border-color: var(--border-glass);
+  background: var(--bg-glass-card);
+  color: var(--text-primary);
 }

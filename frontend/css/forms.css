@@ -57,7 +57,7 @@ textarea {
   border-radius: 8px;
   background: var(--bg-glass-card);
   color: var(--text-primary);
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
 }
@@ -81,6 +81,6 @@ textarea:focus {
   .form-field input,
   .form-field select,
   .form-field textarea {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
   }
 }
