@@ -52,28 +52,28 @@ Karnataka, India.
   delivery, automatically send, or confirm a booking.
 - No enquiry details are stored in cookies, local storage, session storage, a
   database, or a backend API.
-- `frontend/js/config.js` contains an intentionally blank
-  `whatsappDestinationNumber`. Until the owner confirms the number and it is
-  configured in international digits-only format, the forms show a clear
-  configuration error.
+- `frontend/js/config.js` contains the owner-provided
+  `whatsappDestinationNumber` (`919448317432`) in international digits-only
+  format.
 
 ### Phases and deployment
 
 - Phases 0, 1, 2, and 3 are recorded complete. Phase 1's React/Vite frontend is
   historical and has been replaced on `migration/vanilla-html-css-js`.
-- Phase 4 form behavior is implemented locally, but WhatsApp messaging remains
-  disabled pending the destination-number decision.
+- Phase 4 form behavior is implemented locally and uses the configured
+  owner-provided WhatsApp destination.
 - Phase 5 release verification and deployment approval remain pending.
+- Phase 6 static production-readiness checks pass; rendered browser/device
+  verification remains pending.
 - Vercel is the static hosting target: project root `frontend`, Framework
   Preset `Other`, no install command, no build command, and no SPA rewrite.
 - No deployment or push has been performed for this migration.
 
 ### Owner decisions still required
 
-Confirm the WhatsApp destination, public contact permission/accuracy,
-owner-approved images, service descriptions, exact location if a map is wanted,
-and any prices, amenities, capacity, availability, or boating terms before
-publishing them.
+Confirm public contact permission/accuracy, owner-approved images, service
+descriptions, exact location if a map is wanted, and any prices, amenities,
+capacity, availability, or boating terms before publishing them.
 
 ### Restrictions and future scope
 

@@ -109,8 +109,8 @@ Display both owner contact numbers:
 
 Both numbers should support click-to-call functionality.
 
-The WhatsApp destination number is not confirmed. Frontend configuration is
-blank and forms show an error until the owner confirms and configures it.
+The owner-provided WhatsApp destination is configured in the frontend as
+`919448317432` in international digits-only format.
 
 ## 5. Data and persistence
 
@@ -189,7 +189,8 @@ Eden-Homes/
 
 - Do not collect or persist form data in the initial version.
 - Do not add a database or owner authentication to the initial release.
-- Keep the WhatsApp destination blank until the owner confirms it.
+- Keep the owner-provided WhatsApp destination in public frontend
+  configuration; it is not a secret.
 - Validate form data in the browser before preparing the message.
 - Use HTTPS in production.
 - Tell visitors that WhatsApp opens with a draft and they must manually send it.

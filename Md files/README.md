@@ -31,8 +31,9 @@ no SPA rewrite is required. See the repository `README.md` and
 
 ## Phase records
 
-Phases 0–3 are complete. Phase 4 form code is implemented locally but cannot
-open WhatsApp until the owner confirms and configures the destination. Phase 5
-release verification and deployment approval remain pending. Database storage,
-enquiry history, authentication, and an owner dashboard are future options,
-not current features.
+Phases 0–3 are complete. Phase 4 forms use the owner-provided destination
+configured in `frontend/js/config.js`. Phase 5 release verification and
+deployment approval remain pending. Phase 6 static audit checks pass; browser
+viewport verification is still required. Database storage, enquiry history,
+authentication, and an owner dashboard are future options, not current
+features.

@@ -12,13 +12,15 @@ booking; the owner confirms availability, pricing, and arrangements.
 | 1 — Architecture | Complete | Backend health endpoint and original frontend foundation; React/Vite was the historical frontend and is now removed |
 | 2 — Homepage | Complete | Responsive Eden Homes homepage, branding, navigation, service previews, placeholders, and contact links |
 | 3 — Service pages | Complete | Direct 1 BHK, 2 BHK, and boating pages with verified copy, placeholders, metadata, and cross-navigation |
-| 4 — WhatsApp-only enquiries | Implemented locally; destination pending | Browser forms, native validation, date checks, and prefilled-message generation are present; no configured destination is supplied |
+| 4 — WhatsApp-only enquiries | Implemented; destination configured | Browser forms, native validation, date checks, and prefilled-message generation are present; `919448317432` is configured |
 | 5 — Release readiness | Pending | Owner inputs, final browser/device checks, and separately approved deployment |
+| 6 — Production readiness audit | Partially complete | Static code and test audit completed; rendered browser/device checks, console review, and deployment authorization remain pending |
 
 Prior checks for Phases 0–3 are historical records and do not constitute
 verification of this vanilla migration. The current static-site checks are
 available in `frontend/tests/site.test.mjs`; new browser viewport checks remain
-part of Phase 5.
+part of release readiness. The older `Md files/Phase.md` AI-concierge proposal
+is excluded from this production-readiness scope and remains unimplemented.
 
 ## Phase 4 requirements and safeguards
 
@@ -27,17 +29,14 @@ to `1 BHK` or `2 BHK`, check-in, check-out, and guest count. Check-out must be
 later than check-in. Boating collects full name, phone number, preferred date,
 participant count, and preferred duration.
 
-`frontend/js/config.js` contains an intentionally blank
-`whatsappDestinationNumber`. Until the owner confirms the destination and it is
-configured in international digits-only format, the forms show a configuration
-error and cannot open a WhatsApp draft. Neither published telephone number is
-used as a fallback. Once configured, the visitor reviews the message and
-manually presses Send. The site does not store details, report delivery, or
-confirm a booking.
+`frontend/js/config.js` contains the owner-provided
+`whatsappDestinationNumber` (`919448317432`) in international digits-only
+format. The visitor reviews the prefilled message and manually presses Send.
+The site does not store details, report delivery, or confirm a booking.
 
 ## Phase 5 owner and release checklist
 
-- Confirm the WhatsApp destination and approved public contact details.
+- Verify the configured WhatsApp destination and approved public contact details.
 - Supply owner-approved photographs and verified service descriptions.
 - Confirm prices, amenities, capacity, availability, and boating terms before
   publishing any of them.

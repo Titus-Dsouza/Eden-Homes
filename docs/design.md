@@ -27,9 +27,8 @@ coordinates.
   labels, and telephone links support keyboard and assistive-technology use.
 - Reduced-motion preferences disable smooth scrolling and transitions.
 - The homepage links to the individual 1 BHK, 2 BHK, and boating service pages.
-- Service pages include browser-side Phase 4 WhatsApp enquiry forms. The
-  destination is not configured until the owner confirms a number; an enquiry
-  never confirms a booking.
+- Service pages include browser-side WhatsApp enquiry forms using the
+  owner-provided configured destination; an enquiry never confirms a booking.
 - Normal-size secondary text and interactive hover colors retain at least
   4.5:1 contrast on their light surfaces. The terracotta display accent is
   limited to large heading text, where it meets the 3:1 large-text threshold.
@@ -40,5 +39,5 @@ Supply approved photos for the homepage, each accommodation option, boating,
 and Honnavar location. Confirm exact business descriptions, whether contact
 numbers should be published, and an exact property location before adding a
 map. Prices, amenities, capacity, availability, and boating terms remain
-unpublished pending verification. The WhatsApp form destination number still
-requires owner confirmation.
+unpublished pending verification. The WhatsApp form uses the owner-provided
+number configured in `frontend/js/config.js`.

@@ -38,3 +38,12 @@ the WhatsApp destination. Keep the existing contact numbers unchanged.
 
 Database storage, enquiry history, and an owner dashboard remain possible
 future optional upgrades and require a separate owner-approved scope.
+
+### Superseding owner decision — WhatsApp destination
+
+**Recorded:** 2026-11-05
+
+The owner supplied `9448317432` as the WhatsApp destination. The current public
+configuration uses `919448317432`; forms open a prefilled draft for the visitor
+to review and manually send. This supersedes the destination-pending statements
+above. The site still does not persist enquiry details or confirm bookings.

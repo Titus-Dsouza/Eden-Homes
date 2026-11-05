@@ -11,6 +11,7 @@
     if (form.dataset.formsInitialized) {
       return;
     }
+    form.dataset.formsInitialized = 'true';
     form.querySelector('[type="submit"]').disabled = false;
     const date = form.elements.date;
     const configurationError = form.querySelector(

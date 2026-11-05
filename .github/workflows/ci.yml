@@ -26,5 +26,6 @@ jobs:
       - run: node --check js/accommodation.js
       - run: node --check js/boating.js
       - run: node --check js/whatsapp.js
+      - run: node --check js/config.js
+      - run: node --check js/theme.js
       - run: node --test tests/*.test.mjs
-

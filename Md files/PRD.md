@@ -45,11 +45,9 @@ visitor reviews the draft and manually presses **Send** in WhatsApp. The
 website never automatically sends the message, claims delivery, or confirms a
 booking.
 
-The owner has not confirmed the WhatsApp destination. The public configuration
-in `frontend/js/config.js` is intentionally blank, so the forms show a
-configuration error until the owner confirms and configures a number in
-international digits-only format. Never infer it from the two telephone
-contacts.
+The owner-provided destination `919448317432` is configured in
+`frontend/js/config.js` in international digits-only format. Never infer a
+destination from the telephone contacts without owner approval.
 
 ## Privacy and out-of-scope work
 
@@ -63,9 +61,9 @@ under a separate owner-approved scope and privacy review.
 
 ## Owner confirmations pending
 
-Confirm the WhatsApp destination, accuracy and publication consent for the
-phone contacts, owner-approved photos, verified service details, and exact
-property location if a map is requested. Prices, amenities, capacity,
+Confirm accuracy and publication consent for the phone contacts, owner-approved
+photos, verified service details, and exact property location if a map is
+requested. Prices, amenities, capacity,
 availability, and boating terms must not be invented.
 
 ## Historical technology

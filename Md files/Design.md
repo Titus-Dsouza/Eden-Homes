@@ -382,16 +382,15 @@ Requirements:
 Create a visually appealing, premium and trustworthy digital experience for
 Eden Homes. Service pages use verified information only and clearly labeled
 photo placeholders until owner-approved photography is supplied. Initial
-enquiry forms prepare a WhatsApp message for manual sending when the
-owner-confirmed destination is configured; they do not store requests or
-confirm bookings. The destination remains pending owner confirmation.
+enquiry forms prepare a WhatsApp message for manual sending using the
+owner-provided destination configured in `frontend/js/config.js`; they do not
+store requests or confirm bookings.
 
 The website should make visitors feel confident exploring the accommodation and boating services while making enquiries as simple as possible.
 
 The current frontend uses static HTML, CSS, and browser-native JavaScript.
-Service enquiry forms prepare a WhatsApp draft for manual sending; the
-destination still requires owner confirmation and is not inferred from phone
-contacts.
+Service enquiry forms prepare a WhatsApp draft for manual sending using the
+owner-provided configured destination.
 
 **Project:** Eden Homes
 **Design Style:** Modern, natural and premium

@@ -27,9 +27,8 @@ tests, and checks remain in place.
 The browser validates accommodation or boating form values and prepares a
 WhatsApp Click-to-Chat URL. Visitors review the draft and manually press Send.
 The form does not persist the details or report a message as delivered. The
-destination number is not owner-confirmed; `frontend/js/config.js` therefore
-remains blank and the forms show a configuration error. Never use either
-telephone number as a substitute.
+owner-provided destination `919448317432` is configured in
+`frontend/js/config.js`; never infer it from telephone numbers.
 
 No database, authentication, enquiry history, owner dashboard, or AI
 concierge is part of the current release. Database and owner tools remain

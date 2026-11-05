@@ -23,9 +23,8 @@ No backend SDK, database SDK, or credentials are needed.
 
 Visitors complete an accommodation or boating form. The browser validates the
 fields and prepares a prefilled WhatsApp message for the visitor to review and
-manually send to the owner. The destination is currently unconfirmed and is
-blank in `frontend/js/config.js`; the form displays a configuration error until
-the owner confirms and configures a number. It is never inferred from the
+manually send to the owner. The owner-provided destination is configured in
+`frontend/js/config.js` as `919448317432`; it is not inferred from the
 telephone contact numbers. The site does not store enquiries or claim a message
 was sent; an enquiry is not a booking.
 
@@ -41,4 +40,3 @@ optional future upgrades, not initial-release requirements.
 
 Phase 1 implementation and verification are tracked in
 [`roadmap.md`](roadmap.md). Repository work does not change the live deployment.
-

@@ -5,9 +5,9 @@ Eden Homes is a static website for exploring homestay accommodation and boating 
 ## Current status
 
 - **Implemented:** Responsive homepage, direct 1 BHK, 2 BHK, and boating pages, keyboard-operable mobile navigation, phone links, image placeholders, and browser-side WhatsApp enquiry forms.
-- **WhatsApp destination:** Not confirmed by the owner. The forms display a configuration error until `frontend/js/config.js` contains an owner-confirmed destination number. The site does not use either contact number as the WhatsApp destination.
+- **WhatsApp destination:** Owner-provided number `919448317432` is configured in `frontend/js/config.js`; the site displays `9448317432` for contact. Enquiries open as prefilled drafts for the visitor to review and send.
 - **Not implemented:** Database, enquiry storage/history, backend enquiry API, authentication, owner dashboard, and AI concierge.
-- **Owner input pending:** WhatsApp destination, approved photography, verified service details, and contact publication consent.
+- **Owner input pending:** Approved photography, verified service details, and contact publication consent.
 
 ## Technology
 
@@ -36,7 +36,8 @@ frontend/
 │   ├── navigation.js
 │   ├── accommodation.js
 │   ├── boating.js
-│   └── whatsapp.js
+│   ├── whatsapp.js
+│   └── theme.js
 └── tests/
 database/       Documentation for deferred database options
 docs/           Product, architecture, deployment, and phase records

@@ -6,6 +6,10 @@
 **Location:** Honnavar, Karnataka, India  
 **Repository:** https://github.com/Titus-Dsouza/Eden-Homes
 
+> This is a historical phase plan. Its Phase 6 AI-concierge proposal is not
+> active; the current owner-authorized scope is recorded in `docs/roadmap.md`.
+> The present Phase 6 task is a production-readiness audit, not an AI feature.
+
 ---
 
 # PHASE 1 — PROJECT FOUNDATION AND WEBSITE DESIGN

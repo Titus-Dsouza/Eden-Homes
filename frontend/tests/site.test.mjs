@@ -82,8 +82,28 @@ test('pages reference only static assets and include the shared responsive navig
     )
     assert.equal([...html.matchAll(/\bid="theme-toggle"/g)].length, 1)
     assert.match(html, /id="theme-toggle"[^>]+aria-pressed="false"/)
+    assert.doesNotMatch(html, /js\/forms\.js/)
+    assert.match(html, /js\/main\.js/)
     assert.doesNotMatch(html, /react-dom|react-router|\/src\/main\.tsx|type="module"/i)
   }
+})
+
+test('enquiry phone and text fields reject malformed or whitespace-only values', () => {
+  for (const relativePage of pages.slice(1)) {
+    const html = readFileSync(path.join(root, relativePage), 'utf8')
+    const phonePattern = html.match(/name="phone"[^>]+pattern="([^"]+)"/)?.[1]
+    assert.ok(phonePattern, `${relativePage} must constrain phone input`)
+    const validPhone = new RegExp(`^(?:${phonePattern})$`, 'v')
+    assert.ok(validPhone.test('+91 94483 17432'))
+    assert.ok(validPhone.test('1234567'))
+    assert.ok(!validPhone.test('+++++++'))
+    assert.ok(!validPhone.test('123456'))
+    assert.ok(!validPhone.test('1234567890123456'))
+    assert.match(html, /name="name"[^>]+pattern="\.\*\\S\.\*"/)
+  }
+
+  const boating = readFileSync(path.join(root, 'boating/index.html'), 'utf8')
+  assert.match(boating, /name="duration"[^>]+pattern="\.\*\\S\.\*"/)
 })
 
 test('homepage approach cards and featured 2 BHK CTA include the requested content', () => {
@@ -325,6 +345,28 @@ test('WhatsApp URLs require a configured destination and encode enquiry details'
   assert.match(boatingUrl.searchParams.get('text'), /Participants: 3/)
 })
 
+test('main bootstraps the dedicated accommodation and boating form handlers', () => {
+  const documentHandlers = {}
+  const initialized = []
+  const window = {
+    EdenHomes: {
+      initializeNavigation() { initialized.push('navigation') },
+      initializeAccommodationForms() { initialized.push('accommodation') },
+      initializeBoatingForms() { initialized.push('boating') },
+    },
+  }
+  const document = {
+    addEventListener(type, handler) { documentHandlers[type] = handler },
+    querySelectorAll() { return [] },
+  }
+  vm.runInContext(
+    readFileSync(path.join(root, 'js/main.js'), 'utf8'),
+    vm.createContext({ window, document, Date }),
+  )
+  documentHandlers.DOMContentLoaded()
+  assert.deepEqual(initialized, ['navigation', 'accommodation', 'boating'])
+})
+
 test('accommodation checkout must follow check-in before WhatsApp opens', () => {
   const opened = []
   const checkIn = { value: '2026-12-10', addEventListener(type, callback) { this[type] = callback } }
@@ -345,7 +387,9 @@ test('accommodation checkout must follow check-in before WhatsApp opens', () => 
   const configurationError = { hidden: true, textContent: '' }
   const status = { textContent: '' }
   const submitButton = { disabled: true }
+  let submitListenerCount = 0
   const form = {
+    dataset: {},
     elements: { checkIn, checkOut },
     handlers: {},
     querySelector(selector) {
@@ -355,14 +399,18 @@ test('accommodation checkout must follow check-in before WhatsApp opens', () => 
           ? status
           : submitButton
     },
-    addEventListener(type, callback) { this.handlers[type] = callback },
+    addEventListener(type, callback) {
+      if (type === 'submit') submitListenerCount += 1
+      this.handlers[type] = callback
+    },
     reportValidity() { return !checkOut.customError },
   }
+  let popupBlocked = false
   const window = {
     EDEN_HOMES_CONFIG: { whatsappDestinationNumber: '919876543210' },
     open(url) {
       opened.push(url)
-      return { opener: null }
+      return popupBlocked ? null : { opener: null }
     },
   }
   class FormDataStub {
@@ -378,6 +426,8 @@ test('accommodation checkout must follow check-in before WhatsApp opens', () => 
     vm.runInContext(readFileSync(path.join(root, 'js', file), 'utf8'), context)
   }
   window.EdenHomes.initializeAccommodationForms()
+  window.EdenHomes.initializeAccommodationForms()
+  assert.equal(submitListenerCount, 1)
 
   function submit() {
     form.handlers.submit({ preventDefault() {} })
@@ -395,6 +445,15 @@ test('accommodation checkout must follow check-in before WhatsApp opens', () => 
   assert.equal(opened.length, 1)
   assert.match(new URL(opened[0]).searchParams.get('text'), /Check-out: 2026-12-11/)
   assert.match(status.textContent, /manually.*Send|press Send there/)
+
+  popupBlocked = true
+  checkOut.value = '2026-12-12'
+  values.checkOut = checkOut.value
+  checkOut.change()
+  submit()
+  assert.equal(opened.length, 2)
+  assert.match(status.textContent, /blocked/)
+  assert.doesNotMatch(status.textContent, /Review the draft/)
 })
 
 test('mobile navigation toggles accessibly and closes on Escape or page resize', () => {

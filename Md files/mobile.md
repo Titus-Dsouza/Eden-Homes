@@ -135,9 +135,8 @@ Fields:
 
 The form uses native mobile inputs and validation. WhatsApp opens with a
 prefilled message for the visitor to manually send; the website does not store
-the request or present it as a confirmed booking. The destination is not
-configured until the owner confirms it, so a clear configuration error is
-shown.
+the request or present it as a confirmed booking. The owner-provided destination
+is configured in `frontend/js/config.js`.
 
 ## 8. Boating Page
 

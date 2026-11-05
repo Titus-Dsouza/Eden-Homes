@@ -24,10 +24,9 @@ remain independent from the static frontend.
 ## Enquiry communication and privacy
 
 The browser prepares a WhatsApp Click-to-Chat URL after native form validation.
-Visitors must review the draft and manually press Send. The destination number
-is pending owner confirmation; `frontend/js/config.js` intentionally has a
-blank default and the form reports a configuration error. The website does not
-persist form details or claim delivery or booking confirmation.
+Visitors must review the draft and manually press Send. The owner-provided
+destination `919448317432` is configured in `frontend/js/config.js`. The website
+does not persist form details or claim delivery or booking confirmation.
 
 No database, authentication, enquiry history, or owner dashboard is required
 for the current release. Such items remain possible future work subject to

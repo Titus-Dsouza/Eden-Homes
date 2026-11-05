@@ -30,9 +30,8 @@ suggested.
 
 ## Enquiry limits and privacy
 
-- WhatsApp destination must be explicitly confirmed by the owner. It is
-  configured in `frontend/js/config.js`; the blank default makes the form show
-  a clear configuration error.
+- The owner-provided WhatsApp destination `919448317432` is configured in
+  `frontend/js/config.js` as international digits only.
 - Never infer the WhatsApp destination from the two telephone numbers.
 - Form data stays in browser memory only for the current interaction. The site
   does not send it to a backend, database, local storage, session storage, or
@@ -58,7 +57,6 @@ after a separately approved scope and privacy review.
 
 ## Owner decisions still required
 
-- WhatsApp destination number.
 - Approved photographs and verified service descriptions.
 - Whether contact numbers may be published.
 - Exact property location if a map is later requested.

@@ -15,7 +15,6 @@
     <script defer src="../js/accommodation.js"></script>
     <script defer src="../js/boating.js"></script>
     <script defer src="../js/navigation.js"></script>
-    <script defer src="../js/forms.js"></script>
     <script defer src="../js/main.js"></script>
   </head>
   <body>
@@ -50,8 +49,8 @@
           <noscript><p role="status">Enquiry forms require JavaScript. No details are submitted; please use the phone contacts in the footer.</p></noscript>
           <form class="enquiry-form" data-accommodation-form>
             <div class="form-grid">
-              <div class="form-field"><label for="guest-name">Full name</label><input id="guest-name" name="name" autocomplete="name" minlength="2" required></div>
-              <div class="form-field"><label for="guest-phone">Phone number</label><input id="guest-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" pattern="[0-9+() -]{7,20}" aria-describedby="phone-help" required><span class="form-help" id="phone-help">Include the country code if needed.</span></div>
+              <div class="form-field"><label for="guest-name">Full name</label><input id="guest-name" name="name" autocomplete="name" minlength="2" pattern=".*\S.*" required></div>
+              <div class="form-field"><label for="guest-phone">Phone number</label><input id="guest-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" pattern="(?=(?:\D*\d){7,15}\D*$)\+?\d[\d\(\)\s\-]*\d" aria-describedby="phone-help" required><span class="form-help" id="phone-help">Enter 7–15 digits; spaces, +, parentheses, and hyphens are accepted.</span></div>
               <div class="form-field"><label for="property">Property</label><select id="property" name="property" required><option value="1 BHK">1 BHK</option><option value="2 BHK" selected>2 BHK</option></select></div>
               <div class="form-field"><label for="guest-count">Number of guests</label><input id="guest-count" name="guests" type="number" min="1" step="1" inputmode="numeric" required></div>
               <div class="form-field"><label for="check-in">Check-in date</label><input id="check-in" name="checkIn" type="date" required></div>

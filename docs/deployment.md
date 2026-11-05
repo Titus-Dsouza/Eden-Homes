@@ -36,8 +36,8 @@ added only when an actual API integration and hosting provider are selected.
 - `backend/.env.example`: `PORT` and `NODE_ENV`, validated by
   `backend/src/config/env.ts`.
 - `frontend/js/config.js`: public `whatsappDestinationNumber` configuration.
-  It is intentionally empty until the owner confirms the WhatsApp destination.
-  Never infer it from the telephone contact numbers.
+  The owner-provided value is `919448317432` in international digits-only
+  format. Never infer it from the telephone contact numbers.
 - No database variables are required for the initial release.
 
 Local `.env` files are ignored by Git. Never commit credentials or paste them
