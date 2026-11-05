@@ -1,3 +1,3 @@
 window.EDEN_HOMES_CONFIG = Object.freeze({
-  whatsappDestinationNumber: '',
+  whatsappDestinationNumber: '919448317432',
 });

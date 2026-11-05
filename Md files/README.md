@@ -16,11 +16,10 @@ a frontend build.
 
 ## WhatsApp configuration
 
-The destination has not been confirmed by the owner. The default value in
-`frontend/js/config.js` is empty, and the forms show a configuration error until
-the owner supplies a number. Configure it as international digits only after
-confirmation. Do not infer it from the phone contacts (`9448327432` and
-`8660345883`).
+The owner supplied `9448317432` as the destination, configured in
+`frontend/js/config.js` as international digits only (`919448317432`). The
+forms use it to create WhatsApp Click-to-Chat links with URL-encoded enquiry
+messages. The other supplied telephone contact is `8660345883`.
 
 ## Local use and deployment
 

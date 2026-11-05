@@ -14,7 +14,7 @@ information. Enquiries are not confirmed bookings.
 - Directly loadable 1 BHK, 2 BHK, and boating pages.
 - Responsive layouts, keyboard-operable mobile navigation, accessible labels,
   focus behavior, and page metadata.
-- Click-to-call links for `9448327432` and `8660345883`.
+- Click-to-call links for `9448317432` and `8660345883`.
 - Accommodation and boating enquiry forms that validate in the browser and
   prepare a prefilled WhatsApp message for visitor review and manual sending.
 

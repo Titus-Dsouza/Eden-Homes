@@ -10,11 +10,11 @@ Karnataka, India.
 - The site presents 1 BHK accommodation, 2 BHK accommodation, and boating
   enquiries. No amenities, prices, guest capacities, availability, boating
   terms, or exact property address are verified in the project records.
-- `9448327432` and `8660345883` are the two supplied telephone contact numbers
+- `9448317432` and `8660345883` are the two supplied telephone contact numbers
   and remain clickable `tel:` links. Their accuracy and public-use consent
   still require owner confirmation.
-- The WhatsApp destination number has **not** been confirmed. Do not infer it
-  from either telephone number.
+- The owner supplied `9448317432` as the WhatsApp destination; it is configured
+  for WhatsApp links in international digits-only format as `919448317432`.
 
 ### Current website architecture
 

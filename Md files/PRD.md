@@ -11,7 +11,7 @@ contact the owner. Enquiries are not confirmed bookings.
 - Static homepage and directly accessible 1 BHK, 2 BHK, and boating pages.
 - Responsive Eden Homes design, accessible mobile navigation, image
   placeholders, footer, and contact section.
-- Click-to-call links for the supplied numbers `9448327432` and `8660345883`.
+- Click-to-call links for the supplied numbers `9448317432` and `8660345883`.
 - Accommodation and boating forms that validate in the browser and prepare a
   WhatsApp Click-to-Chat message for review and manual sending.
 - Frontend stack: HTML5, CSS3, and browser-native JavaScript; no frontend

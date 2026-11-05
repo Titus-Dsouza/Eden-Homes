@@ -75,8 +75,13 @@ test('pages reference only static assets and include the shared responsive navig
     assert.match(html, /class="mobile-menu-toggle"[^>]+aria-expanded="false"/)
     assert.match(html, /id="mobile-navigation"[^>]+hidden/)
     const themeScript = relativePage === 'index.html' ? 'js/theme.js' : '../js/theme.js'
-    assert.match(html, new RegExp(`<script defer src="${themeScript}"><\\/script>`))
+    assert.ok(
+      html.indexOf(`<script src="${themeScript}"></script>`) <
+        html.indexOf('<link rel="stylesheet"'),
+      `Theme script must set data-theme before stylesheets on ${relativePage}`,
+    )
     assert.equal([...html.matchAll(/\bid="theme-toggle"/g)].length, 1)
+    assert.match(html, /id="theme-toggle"[^>]+aria-pressed="false"/)
     assert.doesNotMatch(html, /react-dom|react-router|\/src\/main\.tsx|type="module"/i)
   }
 })
@@ -87,7 +92,7 @@ test('homepage approach cards and featured 2 BHK CTA include the requested conte
 
   assert.match(homepage, /🎯<\/span><h3>Clear choices<\/h3>/)
   assert.match(homepage, /1 BHK, 2 BHK, and boating options with transparent details and no hidden fees/)
-  assert.match(homepage, /WhatsApp at \+91 9448327432/)
+  assert.match(homepage, /WhatsApp at 9448317432/)
   assert.match(homepage, /💬<\/span><h3>A conversation with the owner<\/h3>/)
   assert.match(homepage, /🌴<\/span><h3>Authentic Local Experience<\/h3>/)
   assert.match(homepage, /Honnavar river boating and regional guidance/)
@@ -100,14 +105,85 @@ test('dark mode panels and global text retain the requested contrast and scale',
   const stylesheet = readFileSync(path.join(root, 'css/style.css'), 'utf8')
   const formsStylesheet = readFileSync(path.join(root, 'css/forms.css'), 'utf8')
 
-  assert.match(stylesheet, /:root body\s*\{[^}]*font-size:\s*1\.125rem;[^}]*line-height:\s*1\.65;/)
-  assert.match(stylesheet, /:root body h1,[\s\S]*?font-size:\s*2\.5rem/)
-  assert.match(stylesheet, /:root body h2,[\s\S]*?font-size:\s*2rem/)
-  assert.match(stylesheet, /:root body h3,[\s\S]*?font-size:\s*1\.35rem/)
-  assert.match(stylesheet, /:root body p\s*\{[^}]*font-size:\s*1\.1rem !important;/)
-  assert.match(stylesheet, /\[data-theme="dark"\] \.glass-card,[\s\S]*?background-color:\s*rgba\(30,\s*41,\s*59,\s*0\.85\) !important/)
-  assert.match(stylesheet, /\[data-theme="dark"\] p,[\s\S]*?\[data-theme="dark"\] label/)
-  assert.match(formsStylesheet, /background:\s*var\(--bg-glass-card\);[\s\S]*?color:\s*var\(--text-primary\);[\s\S]*?font-size:\s*1\.1rem;/)
+  assert.match(stylesheet, /--bg-primary:\s*#f3eedf;/)
+  assert.match(stylesheet, /--accent-primary:\s*#596b35;/)
+  assert.match(stylesheet, /--bg-primary:\s*#171c16;/)
+  assert.match(stylesheet, /--bg-card:\s*#293326;/)
+  assert.match(stylesheet, /--text-primary:\s*#f3efdf;/)
+  assert.match(stylesheet, /--accent-primary:\s*#a9b986;/)
+  assert.match(stylesheet, /body\s*\{[^}]*font-size:\s*18px;[^}]*line-height:\s*1\.65;/)
+  assert.match(stylesheet, /h1,[\s\S]*?font-size:\s*clamp\(2\.5rem, 4\.2vw, 3rem\)/)
+  assert.match(stylesheet, /h2,[\s\S]*?font-size:\s*clamp\(2rem, 3\.2vw, 2\.25rem\)/)
+  assert.match(stylesheet, /h3,[\s\S]*?font-size:\s*clamp\(1\.45rem, 2\.2vw, 1\.65rem\)/)
+  assert.match(stylesheet, /\.glass-card,[\s\S]*?backdrop-filter:\s*blur\(14px\)/)
+  assert.match(stylesheet, /input,[\s\S]*?background:\s*var\(--bg-input\);[\s\S]*?color:\s*var\(--text-primary\)/)
+  assert.match(formsStylesheet, /background:\s*var\(--bg-glass\);[\s\S]*?backdrop-filter:\s*blur\(14px\)/)
+})
+
+test('theme preference follows saved choice or system setting and persists toggle state', () => {
+  function initializeTheme(storedTheme, prefersDark) {
+    const documentHandlers = {}
+    const buttonHandlers = {}
+    const attributes = {}
+    const buttonAttributes = {}
+    const icon = { textContent: '🌙' }
+    const themeColor = {
+      attributes: {},
+      setAttribute(name, value) { this.attributes[name] = value },
+    }
+    const button = {
+      addEventListener(type, handler) { buttonHandlers[type] = handler },
+      setAttribute(name, value) { buttonAttributes[name] = value },
+      querySelector() { return icon },
+    }
+    const storage = {
+      value: storedTheme,
+      getItem() { return this.value },
+      setItem(key, value) { this.value = value },
+    }
+    const document = {
+      readyState: 'loading',
+      documentElement: {
+        setAttribute(name, value) { attributes[name] = value },
+        getAttribute(name) { return attributes[name] },
+      },
+      getElementById(id) { return id === 'theme-color' ? themeColor : button },
+      addEventListener(type, handler) { documentHandlers[type] = handler },
+    }
+    const window = {
+      localStorage: storage,
+      matchMedia() { return { matches: prefersDark } },
+      EdenHomes: {},
+    }
+    const context = vm.createContext({ window, document, console })
+    vm.runInContext(
+      readFileSync(path.join(root, 'js/theme.js'), 'utf8'),
+      context,
+      { filename: 'theme.js' },
+    )
+    documentHandlers.DOMContentLoaded()
+    return { attributes, buttonAttributes, buttonHandlers, icon, storage, themeColor, window }
+  }
+
+  const systemDark = initializeTheme(null, true)
+  assert.equal(systemDark.attributes['data-theme'], 'dark')
+  assert.equal(systemDark.buttonAttributes['aria-pressed'], 'true')
+  assert.equal(systemDark.buttonAttributes['aria-label'], 'Switch to light theme')
+  assert.equal(systemDark.icon.textContent, '☀️')
+  assert.equal(systemDark.themeColor.attributes.content, '#171c16')
+  systemDark.buttonHandlers.click()
+  assert.equal(systemDark.attributes['data-theme'], 'light')
+  assert.equal(systemDark.storage.value, 'light')
+  assert.equal(systemDark.buttonAttributes['aria-pressed'], 'false')
+  assert.equal(systemDark.icon.textContent, '🌙')
+  assert.equal(systemDark.themeColor.attributes.content, '#f3eedf')
+
+  const savedLight = initializeTheme('light', true)
+  assert.equal(savedLight.attributes['data-theme'], 'light')
+  assert.equal(savedLight.buttonAttributes['aria-pressed'], 'false')
+  savedLight.window.EdenHomes.toggleTheme()
+  assert.equal(savedLight.attributes['data-theme'], 'dark')
+  assert.equal(savedLight.storage.value, 'dark')
 })
 
 test('supplied photos appear only in their approved sections and 2 BHK stays empty', () => {
@@ -143,11 +219,12 @@ test('supplied photos appear only in their approved sections and 2 BHK stays emp
   }
 })
 
-test('contact numbers remain clickable and unchanged', () => {
+test('updated contact number remains clickable on every page', () => {
   for (const relativePage of pages) {
     const html = readFileSync(path.join(root, relativePage), 'utf8')
-    assert.match(html, /href="tel:9448327432"[^>]*>[\s\S]*?9448327432/)
+    assert.match(html, /href="tel:9448317432"[^>]*>[\s\S]*?9448317432/)
     assert.match(html, /href="tel:8660345883"[^>]*>[\s\S]*?8660345883/)
+    assert.doesNotMatch(html, /9448327432/)
   }
 })
 
@@ -204,8 +281,8 @@ test('WhatsApp URLs require a configured destination and encode enquiry details'
     guests: '2',
   }
 
-  const missingConfig = { EDEN_HOMES_CONFIG: {}, open() {} }
-  const unavailableWhatsapp = loadWhatsapp(missingConfig, true)
+  const missingConfig = { open() {} }
+  const unavailableWhatsapp = loadWhatsapp(missingConfig, false)
   assert.match(unavailableWhatsapp.getConfigurationError(), /not configured/)
   assert.throws(
     () => unavailableWhatsapp.buildWhatsAppUrl('accommodation', details),
@@ -214,18 +291,18 @@ test('WhatsApp URLs require a configured destination and encode enquiry details'
 
   const opened = []
   const configuredWindow = {
-    EDEN_HOMES_CONFIG: { whatsappDestinationNumber: '919876543210' },
     open(url, target) {
       opened.push({ url, target })
       return { opener: configuredWindow }
     },
   }
-  const whatsapp = loadWhatsapp(configuredWindow, false)
+  const whatsapp = loadWhatsapp(configuredWindow, true)
 
   const url = whatsapp.buildWhatsAppUrl('accommodation', details)
+  assert.ok(url.startsWith('https://wa.me/919448317432?text='))
   const parsedUrl = new URL(url)
   assert.equal(parsedUrl.hostname, 'wa.me')
-  assert.equal(parsedUrl.pathname, '/919876543210')
+  assert.equal(parsedUrl.pathname, '/919448317432')
   assert.match(parsedUrl.searchParams.get('text'), /Asha & Dev/)
   assert.match(parsedUrl.searchParams.get('text'), /Property: 1 BHK/)
   assert.match(parsedUrl.searchParams.get('text'), /Check-out: 2026-12-03/)

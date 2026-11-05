@@ -66,7 +66,7 @@ node --test tests/*.test.mjs
 
 The forms collect the documented accommodation or boating fields in the browser, validate them, and prepare a Click-to-Chat URL. No details are sent to a server, written to local storage, session storage, or cookies, or automatically sent through WhatsApp. The visitor reviews the message and manually presses **Send** in WhatsApp.
 
-Before enabling messages, the owner must provide the WhatsApp destination in `frontend/js/config.js` as international digits only (country code and number, no `+` or spaces). Until then the form displays a clear configuration error. The displayed call numbers remain `9448327432` and `8660345883`; neither is assumed to be the WhatsApp destination.
+The owner-provided WhatsApp destination is configured in `frontend/js/config.js` as `919448317432` (international digits only, no `+` or spaces). The forms prepare `https://wa.me/919448317432` links with URL-encoded enquiry messages. The displayed call numbers are `9448317432` and `8660345883`.
 
 ## Vercel deployment
 

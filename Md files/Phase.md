@@ -311,7 +311,7 @@ Status: Pending owner confirmation.
 
 Display both contact numbers after enquiry submission:
 
-**9448327432**
+**9448317432**
 
 **8660345883**
 
@@ -618,7 +618,7 @@ Never mark a phase complete merely because code has been generated.
 4. Enquiry is saved.
 5. WhatsApp opens with the enquiry details.
 6. Visitor manually sends the message.
-7. Visitor sees contact numbers 9448327432 and 8660345883.
+7. Visitor sees contact numbers 9448317432 and 8660345883.
 8. Owner reviews the enquiry.
 9. Owner contacts the visitor.
 10. Owner discusses pricing and availability.

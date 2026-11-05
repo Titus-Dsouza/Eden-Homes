@@ -104,7 +104,7 @@ of the initial release. Any future owner tools require separate approval.
 
 Display both owner contact numbers:
 
-- 9448327432
+- 9448317432
 - 8660345883
 
 Both numbers should support click-to-call functionality.
